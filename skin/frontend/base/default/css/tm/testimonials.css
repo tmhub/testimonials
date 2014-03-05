@@ -1,0 +1,143 @@
+.testimonials-list .testimonial {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    padding-top: 20px;
+}
+
+.testimonials-list .testimonial:first-child {
+    padding-top: 0px;
+}
+
+.testimonials-list .more-button {
+    width: 100%;
+    text-align: center;
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+    border-radius: 1px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.testimonials-list .more-button a {
+    color: #fff;
+    background: #479ccf;
+    border: 1px solid #3793cb;
+    text-shadow: 0 1px 0 #3188bc;
+    text-decoration: none;
+    padding: 11px 30px;
+    transition: background 0.2s linear 0;
+}
+
+.testimonials-list .more-button a:focus,
+.testimonials-list .more-button a:hover  {
+    background: #5ba7d4;
+    color: #fff;
+}
+
+.testimonials-list .more-button a:focus {
+    background: #5ba7d4;
+    color: #fff;
+    box-shadow: inset 0 0 8px #3188bc;
+}
+
+.testimonials-list .more-button .disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.testimonials-list .page-title button {
+    float: right;
+}
+
+.testimonials-list .page-title h1 {
+    float: left;
+}
+
+.testimonials-list .testimonial-info {
+    float: left;
+}
+
+.testimonials-list .testimonial .content-wrapper { 
+    clear: both; 
+}
+
+.testimonials-list .testimonial .message-wrapper {
+    float: left;
+    margin-top: -25px;
+}
+
+.testimonials-list .testimonial .testimonial-date {
+    float: right;
+}
+
+.testimonials-list .testimonial .rating-title {
+    float: left;
+    margin-right: 10px;
+    line-height: 1.25;
+}
+
+.testimonials-list .testimonial .after-info {
+    text-align: right;
+}
+
+.testimonials-list .testimonial .author-info {
+    font-style: italic;
+}
+
+/** widgets styles */
+.block-testimonials .block-title strong {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    padding-left: 21px;
+    background-image: url(/skin/frontend/default/default/images/i_block-poll.gif);
+}
+
+.block-testimonials .actions {
+    text-align: right;
+    background: #dee5e8 url(/skin/frontend/default/default/images/bkg_block-actions.gif) 0 0 repeat-x;
+    padding: 6px 9px;
+}
+
+.block-testimonials .actions a {
+    float: none;
+}
+
+.block-testimonials .block-content a {
+    color: #1b2d3b;
+}
+
+.block-testimonials {
+    font-size: 11px;
+    line-height: 1.25;
+}
+
+.block-testimonials .block-content .content {
+    padding: 10px 10px 30px 10px;
+}
+
+.block-testimonials .block-content .review {
+    text-align: center;
+}
+
+.block-testimonials .block-content .review .score {
+    font-weight: bold;
+    font-size: 40px;
+    color: #e26703;
+}
+
+.block-testimonials .block-content .content .rating-title {
+    float: left;
+    margin-right: 10px;
+}
+
+.block-testimonials .block-content .content .message {
+    margin-top: 10px;
+}
+
+.block-testimonials .block-content .content .name {
+    float: right;
+    margin-top: 10px;
+    font-style: italic;
+}

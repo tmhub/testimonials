@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<widgets>
+    <testimonials_list type="testimonials/widget_list" translate="name" module="testimonials">
+        <name>Testimonials: List of testimonials</name>
+        <description type="desc">Shows testiminial</description>
+    </testimonials_list>
+    <testimonials_review type="testimonials/widget_review" translate="name" module="testimonials">
+        <name>Testimonials: Review block</name>
+        <description type="desc">Shows number of testimonials and average testimonial rating</description>
+    </testimonials_review>
+</widgets>

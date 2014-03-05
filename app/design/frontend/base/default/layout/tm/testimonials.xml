@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/tm/testimonials.css</name></action>
+        </reference>
+    </default>
+    <tm_testimonials_index_new>
+        <update handle="page_two_columns_left"/>
+        <reference name="content">
+        	<block type="testimonials/form" name="testimonials.form" 
+        		   template="tm/testimonials/form.phtml" as="testimonials_form">
+                <block type="captcha/captcha" name="captcha">
+                    <reference name="head">
+                        <action method="addJs"><file>mage/captcha.js</file></action>
+                    </reference>
+                    <action method="setFormId">
+                        <formId>testimonials_form</formId>
+                    </action>
+                    <action method="setImgWidth">
+                        <width>230</width>
+                    </action>
+                    <action method="setImgHeight">
+                        <width>50</width>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </tm_testimonials_index_new>
+    <tm_testimonials_index_index>
+        <update handle="page_one_column"/>
+        <reference name="content">
+            <block type="testimonials/list_title" name="testimonials.list.title" 
+                   template="tm/testimonials/list/title.phtml">
+            </block>
+            <block type="testimonials/list_content" name="testimonials.list.content" 
+                   template="tm/testimonials/list/content.phtml">
+            </block>
+            <block type="testimonials/list_bottom" name="testimonials.list.bottom" 
+                   template="tm/testimonials/list/bottom.phtml">
+            </block>
+        </reference>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/tm/testimonials.js</name></action>
+        </reference>
+    </tm_testimonials_index_index>
+</layout>

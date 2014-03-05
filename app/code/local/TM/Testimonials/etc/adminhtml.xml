@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <templates_master>
+            <title>Templates Master</title>
+            <sort_order>71</sort_order>
+            <children>
+                <testimonials translate="title" module="testimonials">
+                    <title>Testimonials</title>
+                    <sort_order>10</sort_order>
+                    <children>
+                        <testimonials>
+                            <title>Manage Testimonials</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/testimonials_index/index</action>
+                        </testimonials>
+                    </children>
+                </testimonials>
+            </children>
+        </templates_master>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <testimonials translate="title" module="testimonials">
+                                        <title>Testimonials Settings</title>
+                                    </testimonials>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <templates_master>
+                        <title>Templates Master</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <testimonials translate="title" module="testimonials">
+                                <title>Testimonials</title>
+                                <sort_order>20</sort_order>
+                                <children>
+                                    <testimonials>
+                                        <title>Manage Testimonials</title>
+                                        <sort_order>10</sort_order>
+                                    </testimonials>
+                                </children>
+                            </testimonials>
+                        </children>
+                    </templates_master>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

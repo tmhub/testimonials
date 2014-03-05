@@ -1,0 +1,18 @@
+<div class="block block-testimonials">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Store Review') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <span itemscope itemtype="http://schema.org/Store">
+            <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" class="review">
+                <div itemprop="ratingValue" class="score"><?php echo $this->getAvgRating() ?></div>
+                <div class="score-info"><?php echo ' ' . $this->__('out of') . ' 5 (' ?><span itemprop="ratingCount"><?php echo $this->getTestimonials()->getSize() ?></span><?php echo ' ' . $this->__('votes') . ')' ?>
+                </div>
+            </div>
+            <meta itemprop="name" content="<?php echo Mage::app()->getStore()->getFrontendName() ?>">
+        </span>
+        <div class="actions">
+            <a href="<?php echo $this->getUrl('testimonials/index') ?>"><?php echo $this->__('View all testimonials') ?></a>
+        </div>
+    </div>
+</div>

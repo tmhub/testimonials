@@ -1,0 +1,92 @@
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="page-title">
+    <h1><?php echo $this->__('Submit your testimonial') ?></h1>
+</div>
+<form action="<?php echo $this->getUrl('testimonials/index/post'); ?>" 
+      id="testimonialForm" 
+      method="post" 
+      enctype="multipart/form-data">
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Testimonial') ?></h2>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="field">
+                    <label for="name" class="required"><em>*</em><?php echo $this->__('Name') ?></label>
+                    <div class="input-box">
+                       <input name="name" id="name" 
+                       title="<?php echo $this->__('Name') ?>" 
+                       value="<?php echo $this->escapeHtml($this->getUserName()) ?>" class="input-text required-entry" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="email" class="required"><em>*</em><?php echo $this->__('Email') ?></label>
+                    <div class="input-box">
+                        <input name="email" id="email" title="<?php echo $this->__('Email') ?>" value="<?php echo $this->escapeHtml($this->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="company"><?php echo $this->__('Company') ?></label>
+                    <div class="input-box">
+                        <input name="company" id="company" title="<?php echo $this->__('Company') ?>" value="<?php echo $this->escapeHtml($this->getCompany()) ?>" class="input-text" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="website"><?php echo $this->__('Website') ?></label>
+                    <div class="input-box">
+                        <input name="website" id="website" title="<?php echo $this->__('Website') ?>" value="<?php echo $this->escapeHtml($this->getWebSite()) ?>" class="input-text" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="twitter"><?php echo $this->__('Twitter') ?></label>
+                    <div class="input-box">
+                        <input name="twitter" id="twitter" title="<?php echo $this->__('Twitter') ?>" value="<?php echo $this->escapeHtml($this->getTwitter()) ?>" class="input-text" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="facebook"><?php echo $this->__('Facebook') ?></label>
+                    <div class="input-box">
+                        <input name="facebook" id="facebook" title="<?php echo $this->__('Facebook') ?>" value="<?php echo $this->escapeHtml($this->getFacebook()) ?>" class="input-text" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="image"><?php echo $this->__('Image') ?></label>
+                    <div class="input-box">
+                        <input name="image" id="image" title="<?php echo $this->__('Image') ?>" 
+                        type="file" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label><?php echo $this->__('Rating') ?></label>
+                    <div class="input-box">
+                    <?php for ($i = 1; $i <= 5; ++$i) { ?>
+                        <label for="rating_<?php echo $i; ?>"><?php echo $i; ?>
+                            <input type="radio" name="rating" id="rating_<?php echo $i; ?>" value="<?php echo $i; ?>" class="radio" <?php if ($this->checkRating($i)): ?>checked="checked"<?php endif; ?> />
+                        </label>
+                    <?php } ?>
+                    </div>
+                </div>
+            </li>
+            <li class="wide">
+                <label for="message" class="required"><em>*</em><?php echo $this->__('Message') ?></label>
+                <div class="input-box">
+                    <textarea name="message" id="message" title="<?php echo $this->__('Message') ?>" 
+                        class="required-entry input-text" cols="5" rows="3"><?php echo $this->getUserMessage(); ?></textarea>
+                </div>
+            </li>
+            <?php echo $this->getChildHtml('captcha'); ?>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+        <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+        <button class="button" onclick="setLocation('/testimonials/'); return false;">
+            <span>Back</span>
+        </button>
+    </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var testimonialForm = new VarienForm('testimonialForm', true);
+//]]>
+</script>

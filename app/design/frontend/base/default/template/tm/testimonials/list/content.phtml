@@ -1,0 +1,66 @@
+    <?php 
+        $_testimonials = $this->getTestimonials(); 
+        $_width = Mage::helper('testimonials')->getImageWidth();
+        $_height = Mage::helper('testimonials')->getImageHeight();
+    ?>
+    <?php if($_testimonials->getSize()): ?>
+        <?php foreach ($_testimonials as $_testimonial): ?>
+            <div class="testimonial">
+                <?php $authorInfo = $_testimonial->getName(); 
+                    if ($_testimonial->getCompany()):
+                        $authorInfo .= ', ' . $_testimonial->getCompany();
+                    endif;
+                ?>
+                <div class="author-info"><?php echo $authorInfo; ?></div>
+                <?php if ($_testimonial->getImage()): ?>
+                    <div class="testimonial-info" style="width: <?php echo ($_width + 10) ?>px">
+                        <?php if ($_testimonial->getRating()): ?>
+                        <div class="rating-title"><?php echo $this->__('Rating: ') ?></div>
+                        <div class="rating-box">
+                            <div class="rating" style="width: <?php echo $_testimonial->getRating() / 5 * 100 ?>%;"></div>
+                        </div>
+                        <?php endif ?>
+                        <img src="<?php echo $this->helper('testimonials/image')->
+                        init($_testimonial)->resize($_width, $_height); ?>" 
+                        alt="testimonial image" />
+                    </div>
+                <?php elseif ($_testimonial->getRating()): ?>
+                <div class="rating-title"><?php echo $this->__('Rating: ') ?></div>
+                <div class="rating-box"><div class="rating" style="width: <?php echo $_testimonial->getRating() / 5 * 100 ?>%;"></div></div>
+                <?php endif ?>
+                <div style="width: auto; margin-left: <?php echo $_testimonial->getImage() ? ($_width + 10) . 'px' : '0px' ?>">
+                    <div class="message-wrapper">
+                        <div class="testimonial-date">
+                            <span><?php echo $this->__('Added:') ?></span>
+                            <span class="nobr"><?php echo $this->formatDate($_testimonial->getDate()) ?></span>
+                        </div>
+                        <div class="content-wrapper">
+                            <div class="message"><?php echo $_testimonial->getMessage() ?></div>
+                            <div class="after-info">
+                                <div><?php echo $_testimonial->getEmail() ?></div>
+                                <?php if ($_testimonial->getWebsite()): ?>
+                                    <a href="<?php echo $_testimonial->getWebsite() ?>"><?php echo $this->__('Website') ?></a>
+                                <?php endif ?>
+                                <?php if ($_testimonial->getFacebook()): ?>
+                                    <a href="<?php echo $_testimonial->getFacebook() ?>"><?php echo $this->__('Facebook') ?></a>
+                                <?php endif ?>
+                                <?php if ($_testimonial->getTwitter()): ?>
+                                    <a href="<?php echo $_testimonial->getTwitter() ?>"><?php echo $this->__('Twitter') ?></a>
+                                <?php endif ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <div class="clearer"></div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p><?php echo $this->__('No testimonials found.'); ?></p>
+    <?php endif ?>
+    <?php if ($_testimonials->getCurPage() * $_testimonials->getPageSize() >= $_testimonials->getSize()): ?>
+        <script type="text/javascript">
+        //<![CDATA[
+            if ($('viewMore')) $('viewMore').hide();
+        //]]>
+        </script>
+    <?php endif ?>
