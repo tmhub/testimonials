@@ -46,28 +46,6 @@
             $this->renderLayout();
         }
 
-        public function testAction()
-        {
-            $this->_initLayoutMessages('customer/session');
-            for ($i=0; $i < 50; $i++) { 
-                $model = Mage::getModel('tm_testimonials/data');
-                $model->setStoreId(Mage::app()->getStore()->getStoreId());
-                $model->setName("Test " . $i);
-                $model->setEmail("test" . $i ."@test.com");
-                $model->setMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non dui vitae justo porta malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque sapien ante, volutpat et pulvinar in, pulvinar vel tortor. Fusce sed velit sit amet nisi tincidunt blandit. Vivamus ut lorem eros. In vitae auctor diam. Donec dignissim neque libero, vel ullamcorper tortor porta eget. Nullam placerat, lectus quis volutpat ullamcorper, quam justo mattis eros, sit amet fringilla est nulla sit amet mi. Etiam ultrices libero sit amet nisi porta eleifend. Praesent varius dui a nisl tincidunt bibendum. Duis laoreet dui sit amet libero pellentesque suscipit.");
-                $model->setRating(rand(1, 5));
-
-                try {
-                    $model->save();
-                } catch (Exception $e) {
-                    $this->showError($e->getMessage(), $data);
-                    return;
-                }
-            }
-            Mage::getSingleton('customer/session')->addSuccess("Test data saved.");
-            $this->_redirect('*/*/new');
-        }
-
         public function postAction() 
         {
             $this->_initLayoutMessages('customer/session');
