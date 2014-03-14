@@ -113,8 +113,8 @@ class TM_Testimonials_Block_Adminhtml_Page_Edit_Tab_Main
         $this->_addElementTypes($fieldset); //register own image element
         $fieldset->addField('image', 'image', array(
             'name'     => 'image',
-            'label'    => Mage::helper('catalog')->__('Image'),
-            'title'    => Mage::helper('catalog')->__('Image'),
+            'label'    => Mage::helper('catalog')->__('Profile image'),
+            'title'    => Mage::helper('catalog')->__('Profile image'),
             'disabled' => $isElementDisabled
         ));
 
