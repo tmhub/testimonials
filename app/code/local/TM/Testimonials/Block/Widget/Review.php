@@ -24,9 +24,8 @@ class TM_Testimonials_Block_Widget_Review extends Mage_Core_Block_Template
             }
             $avgRating = $total / $testimonials->getSize();
         }
-
         $this->setTestimonials($testimonials);
-        $this->setAvgRating($avgRating);
+        $this->setAvgRating(number_format($avgRating, 2));
 
         return parent::_beforeToHtml();
     }
