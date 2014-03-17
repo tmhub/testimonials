@@ -22,6 +22,14 @@ class TM_Testimonials_Block_Adminhtml_Page_Edit extends Mage_Adminhtml_Block_Wid
         if (!$this->_isAllowedAction('delete')) {
             $this->_removeButton('delete');
         }
+
+        if (Mage::registry('testimonials_data')->getStatus() == TM_Testimonials_Model_Data::STATUS_AWAITING_APPROVAL) {
+            $this->addButton('approve', array(
+                'label'     => Mage::helper('testimonials')->__('Approve'),
+                'onclick'   => "setLocation('" . $this->_getApproveUrl() . "')",
+                'class'     => 'save'
+            ));
+        }
     }
 
     /**
@@ -69,6 +77,13 @@ class TM_Testimonials_Block_Adminhtml_Page_Edit extends Mage_Adminhtml_Block_Wid
             '_current'   => true,
             'back'       => 'edit',
             'active_tab' => '{{tab_id}}'
+        ));
+    }
+
+    protected function _getApproveUrl()
+    {
+        return $this->getUrl('*/*/approve', array(
+            '_current'   => true
         ));
     }
 

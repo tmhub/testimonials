@@ -201,6 +201,28 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
         $this->_redirect('*/*/');
     }
 
+    public function approveAction()
+    {
+        $model = Mage::getModel('tm_testimonials/data');
+        if ($id = $this->getRequest()->getParam('testimonial_id')) {
+            $model->load($id);
+        }
+
+        try {
+            $model->setStatus(TM_Testimonials_Model_Data::STATUS_ENABLED);
+            $model->save();
+
+            Mage::getSingleton('adminhtml/session')->addSuccess(
+                Mage::helper('testimonials')->__('Testimonial approved.')
+            );
+            $this->_redirect('*/*/');
+            return;
+        } catch (Exception $e) {
+            $this->_getSession()->addError($e->getMessage());
+        }
+        $this->_redirect('*/*/edit', array('testimonial_id' => $this->getRequest()->getParam('testimonial_id'), '_current'=>true));
+    }
+
     /**
      * Check the permission to run it
      *
@@ -215,6 +237,9 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
                 break;
             case 'delete':
                 return Mage::getSingleton('admin/session')->isAllowed('testimonials/index/delete');
+                break;
+            case 'approve':
+                return Mage::getSingleton('admin/session')->isAllowed('testimonials/index/approve');
                 break;
             default:
                 return Mage::getSingleton('admin/session')->isAllowed('testimonials/index');
