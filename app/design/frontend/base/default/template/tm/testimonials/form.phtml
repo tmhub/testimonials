@@ -24,30 +24,38 @@
                         <input name="email" id="email" title="<?php echo $this->__('Email') ?>" value="<?php echo $this->escapeHtml($this->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
                     </div>
                 </div>
-                <div class="field">
-                    <label for="company"><?php echo $this->__('Company') ?></label>
-                    <div class="input-box">
-                        <input name="company" id="company" title="<?php echo $this->__('Company') ?>" value="<?php echo $this->escapeHtml($this->getCompany()) ?>" class="input-text" type="text" />
+                <?php if (Mage::helper('testimonials')->isCompanyEnabled()): ?>
+                    <div class="field">
+                        <label for="company"><?php echo $this->__('Company') ?></label>
+                        <div class="input-box">
+                            <input name="company" id="company" title="<?php echo $this->__('Company') ?>" value="<?php echo $this->escapeHtml($this->getCompany()) ?>" class="input-text" type="text" />
+                        </div>
                     </div>
-                </div>
-                <div class="field">
-                    <label for="website"><?php echo $this->__('Website') ?></label>
-                    <div class="input-box">
-                        <input name="website" id="website" title="<?php echo $this->__('Website') ?>" value="<?php echo $this->escapeHtml($this->getWebSite()) ?>" class="input-text" type="text" />
+                <?php endif ?>
+                <?php if (Mage::helper('testimonials')->isWebsiteEnabled()): ?>
+                    <div class="field">
+                        <label for="website"><?php echo $this->__('Website') ?></label>
+                        <div class="input-box">
+                            <input name="website" id="website" title="<?php echo $this->__('Website') ?>" value="<?php echo $this->escapeHtml($this->getWebSite()) ?>" class="input-text" type="text" />
+                        </div>
                     </div>
-                </div>
-                <div class="field">
-                    <label for="twitter"><?php echo $this->__('Twitter') ?></label>
-                    <div class="input-box">
-                        <input name="twitter" id="twitter" title="<?php echo $this->__('Twitter') ?>" value="<?php echo $this->escapeHtml($this->getTwitter()) ?>" class="input-text" type="text" />
+                <?php endif ?>
+                <?php if (Mage::helper('testimonials')->isTwitterEnabled()): ?>
+                    <div class="field">
+                        <label for="twitter"><?php echo $this->__('Twitter') ?></label>
+                        <div class="input-box">
+                            <input name="twitter" id="twitter" title="<?php echo $this->__('Twitter') ?>" value="<?php echo $this->escapeHtml($this->getTwitter()) ?>" class="input-text" type="text" />
+                        </div>
                     </div>
-                </div>
-                <div class="field">
-                    <label for="facebook"><?php echo $this->__('Facebook') ?></label>
-                    <div class="input-box">
-                        <input name="facebook" id="facebook" title="<?php echo $this->__('Facebook') ?>" value="<?php echo $this->escapeHtml($this->getFacebook()) ?>" class="input-text" type="text" />
+                <?php endif ?>
+                <?php if (Mage::helper('testimonials')->isFacebookEnabled()): ?>
+                    <div class="field">
+                        <label for="facebook"><?php echo $this->__('Facebook') ?></label>
+                        <div class="input-box">
+                            <input name="facebook" id="facebook" title="<?php echo $this->__('Facebook') ?>" value="<?php echo $this->escapeHtml($this->getFacebook()) ?>" class="input-text" type="text" />
+                        </div>
                     </div>
-                </div>
+                <?php endif ?>
                 <div class="field">
                     <label for="image"><?php echo $this->__('Profile image') ?></label>
                     <div class="input-box">

@@ -27,6 +27,31 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_IMAGE_H            = 'testimonials/general/image_height';
 
     /**
+     * Path to store config company field enabled
+     *
+     * @var string
+     */
+    const XML_COMPANY_ENABLED            = 'testimonials/general/enable_company';
+    /**
+     * Path to store config website field enabled
+     *
+     * @var string
+     */
+    const XML_WEBSITE_ENABLED            = 'testimonials/general/enable_website';
+    /**
+     * Path to store config twitter field enabled
+     *
+     * @var string
+     */
+    const XML_TWITTER_ENABLED            = 'testimonials/general/enable_twitter';
+    /**
+     * Path to store config facebook field enabled
+     *
+     * @var string
+     */
+    const XML_FACEBOOK_ENABLED            = 'testimonials/general/enable_facebook';
+
+    /**
      * Checks whether testimonials can be displayed in the frontend
      *
      * @param integer|string|Mage_Core_Model_Store $store
@@ -65,5 +90,45 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     public function getImageHeight($store = null)
     {
         return abs((int)Mage::getStoreConfig(self::XML_PATH_IMAGE_H, $store));
+    }
+    /**
+     * Checks whether company field enabled
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return boolean
+     */
+    public function isCompanyEnabled($store = null)
+    {
+        return Mage::getStoreConfigFlag(self::XML_COMPANY_ENABLED, $store);
+    }
+    /**
+     * Checks whether website field enabled
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return boolean
+     */
+    public function isWebsiteEnabled($store = null)
+    {
+        return Mage::getStoreConfigFlag(self::XML_WEBSITE_ENABLED, $store);
+    }
+    /**
+     * Checks whether twitter field enabled
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return boolean
+     */
+    public function isTwitterEnabled($store = null)
+    {
+        return Mage::getStoreConfigFlag(self::XML_TWITTER_ENABLED, $store);
+    }
+    /**
+     * Checks whether facebook field enabled
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return boolean
+     */
+    public function isFacebookEnabled($store = null)
+    {
+        return Mage::getStoreConfigFlag(self::XML_FACEBOOK_ENABLED, $store);
     }
 }
