@@ -1,4 +1,9 @@
     <?php 
+        if (!$this->getIsAjax()):
+            echo $this->getChildHtml('testimonials.list.title'); 
+        endif 
+    ?>
+    <?php 
         $_testimonials = $this->getTestimonials(); 
         $_width = Mage::helper('testimonials')->getImageWidth();
         $_height = Mage::helper('testimonials')->getImageHeight();
@@ -67,3 +72,8 @@
         //]]>
         </script>
     <?php endif ?>
+    <?php 
+        if (!$this->getIsAjax()):
+            echo $this->getChildHtml('testimonials.list.bottom'); 
+        endif 
+    ?>

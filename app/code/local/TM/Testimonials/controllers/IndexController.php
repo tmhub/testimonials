@@ -23,6 +23,7 @@
                 $currentPage = (int)$this->getRequest()->getParam('page', 1);
                 $output = $layout->getBlock('testimonials.list.content')
                     ->setCurrentPage($currentPage)
+                    ->setIsAjax(true)
                     ->toHtml();
                 $this->getResponse()->setBody(
                     Mage::helper('core')->jsonEncode(array('outputHtml' => $output))

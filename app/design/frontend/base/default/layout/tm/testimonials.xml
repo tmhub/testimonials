@@ -30,14 +30,14 @@
     <tm_testimonials_index_index>
         <update handle="page_one_column"/>
         <reference name="content">
-            <block type="testimonials/list_title" name="testimonials.list.title" 
-                   template="tm/testimonials/list/title.phtml">
-            </block>
             <block type="testimonials/list_content" name="testimonials.list.content" 
                    template="tm/testimonials/list/content.phtml">
-            </block>
-            <block type="testimonials/list_bottom" name="testimonials.list.bottom" 
-                   template="tm/testimonials/list/bottom.phtml">
+                <block type="testimonials/list_title" name="testimonials.list.title" 
+                       template="tm/testimonials/list/title.phtml">
+                </block>
+                <block type="testimonials/list_bottom" name="testimonials.list.bottom" 
+                       template="tm/testimonials/list/bottom.phtml">
+                </block>
             </block>
         </reference>
         <reference name="head">
