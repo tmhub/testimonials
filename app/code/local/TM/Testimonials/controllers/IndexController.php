@@ -86,7 +86,7 @@
                     $model->save();
                     Mage::getSingleton('customer/session')->
                                         addSuccess(Mage::helper('testimonials')->
-                                        __('Thank you for your testimonial'));
+                                        getSentMessage());
                     Mage::getSingleton('customer/session')->unsTestimonialsFormData();
                     $this->_redirect('*/*/new');
                     return;

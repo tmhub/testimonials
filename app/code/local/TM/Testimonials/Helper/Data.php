@@ -50,6 +50,12 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
      * @var string
      */
     const XML_FACEBOOK_ENABLED            = 'testimonials/general/enable_facebook';
+    /**
+     * Path to store config sent message
+     *
+     * @var string
+     */
+    const XML_SENT_MESSAGE                = 'testimonials/general/sent_message';
 
     /**
      * Checks whether testimonials can be displayed in the frontend
@@ -130,5 +136,15 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     public function isFacebookEnabled($store = null)
     {
         return Mage::getStoreConfigFlag(self::XML_FACEBOOK_ENABLED, $store);
+    }
+    /**
+     * Return testimonial sent message
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return String
+     */
+    public function getSentMessage($store = null)
+    {
+        return Mage::getStoreConfig(self::XML_SENT_MESSAGE, $store);
     }
 }
