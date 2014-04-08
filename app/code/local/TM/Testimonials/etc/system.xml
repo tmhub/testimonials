@@ -93,10 +93,22 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </enable_facebook>
+                        <placeholder_image translate="label comment">
+                            <label>Image placeholder</label>
+                            <comment>Allowed file types: jpeg, gif, png.</comment>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>tm_testimonials/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">testimonials/pictures</upload_dir>
+                            <base_url type="media" scope_info="1">testimonials/pictures</base_url>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </placeholder_image>
                         <sent_message translate="label">
                             <label>Message shown after testimonial sent</label>
                             <frontend_type>textarea</frontend_type>
-                            <sort_order>90</sort_order>
+                            <sort_order>100</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>

@@ -3,11 +3,11 @@
 class TM_Testimonials_Helper_Image extends Mage_Core_Helper_Abstract
 {
 
-    protected $_testimonial;
+    protected $_image;
 
-    public function init($testimonial, $mode = 'image')
+    public function init($image, $mode = 'image')
     {
-        $this->_testimonial = $testimonial;
+        $this->_image = $image;
         return $this;
     }
     
@@ -40,7 +40,6 @@ class TM_Testimonials_Helper_Image extends Mage_Core_Helper_Abstract
             $imageObj->keepAspectRatio(true);
             $imageObj->keepFrame(false);
             $imageObj->keepTransparency(true);
-            //$imageObj->backgroundColor($this->getBackgroundColor());
             $imageObj->resize($width, $height);
             $imageObj->save($imageResized);
         }
@@ -51,24 +50,14 @@ class TM_Testimonials_Helper_Image extends Mage_Core_Helper_Abstract
         return $imageUrl;
     }
 
-    public function getBackgroundColor()
-    {
-        $rgb = Mage::getStoreConfig('testimonials/image/background');
-        $rgb = explode(',', $rgb);
-        foreach ($rgb as $i => $color) {
-            $rgb[$i] = (int) $color;
-        }
-        return $rgb;
-    }
-
     public function getImageUrl()
     {
-        $image = $this->_testimonial->getImage();
+        $image = $this->_image;
         if (empty($image)) {
             return false;
         }
         return Mage::getBaseUrl('media')
-            . 'testimonials/pictures'
-            . $image;
+            . 'testimonials/pictures/'
+            . trim($image, '/');
     }
 }

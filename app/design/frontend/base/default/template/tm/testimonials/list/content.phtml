@@ -7,6 +7,7 @@
         $_testimonials = $this->getTestimonials(); 
         $_width = Mage::helper('testimonials')->getImageWidth();
         $_height = Mage::helper('testimonials')->getImageHeight();
+        $_placeholderImage = Mage::helper('testimonials')->getPlaceholderImage();
     ?>
     <?php if($_testimonials->getSize()): ?>
         <?php foreach ($_testimonials as $_testimonial): ?>
@@ -17,6 +18,11 @@
                     endif;
                 ?>
                 <div class="author-info"><?php echo $authorInfo; ?></div>
+                <?php if (!$_testimonial->getImage() && $_placeholderImage) 
+                    {
+                        $_testimonial->setImage($_placeholderImage);
+                    } 
+                ?>
                 <?php if ($_testimonial->getImage()): ?>
                     <div class="testimonial-info" style="width: <?php echo ($_width + 10) ?>px">
                         <?php if ($_testimonial->getRating()): ?>
@@ -26,8 +32,8 @@
                         </div>
                         <?php endif ?>
                         <img src="<?php echo $this->helper('testimonials/image')->
-                        init($_testimonial)->resize($_width, $_height); ?>" 
-                        alt="testimonial image" />
+                        init($_testimonial->getImage())->resize($_width, $_height); ?>" 
+                        alt="Profile image" />
                     </div>
                 <?php elseif ($_testimonial->getRating()): ?>
                 <div class="rating-title"><?php echo $this->__('Rating: ') ?></div>

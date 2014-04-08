@@ -56,6 +56,12 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
      * @var string
      */
     const XML_SENT_MESSAGE                = 'testimonials/general/sent_message';
+    /**
+     * Path to store config for placeholder image
+     *
+     * @var string
+     */
+    const XML_PLACEHOLDER_IMAGE           = 'testimonials/general/placeholder_image';
 
     /**
      * Checks whether testimonials can be displayed in the frontend
@@ -146,5 +152,15 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     public function getSentMessage($store = null)
     {
         return Mage::getStoreConfig(self::XML_SENT_MESSAGE, $store);
+    }
+    /**
+     * Return testimonial placeholder image
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return String
+     */
+    public function getPlaceholderImage($store = null)
+    {
+       return Mage::getStoreConfig(self::XML_PLACEHOLDER_IMAGE, $store);
     }
 }

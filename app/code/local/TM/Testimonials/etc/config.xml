@@ -117,6 +117,7 @@
                 <enable_twitter>0</enable_twitter>
                 <enable_facebook>0</enable_facebook>
                 <sent_message>Thank you for your testimonial</sent_message>
+                <placeholder_image>empty.gif</placeholder_image>
             </general>
         </testimonials>
     </default>
