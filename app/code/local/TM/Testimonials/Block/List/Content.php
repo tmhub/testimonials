@@ -2,6 +2,7 @@
 
 class TM_Testimonials_Block_List_Content extends Mage_Core_Block_Template
 {
+    protected $_placeholderImage;
     /**
      * Initialize block's cache
      */
@@ -45,6 +46,7 @@ class TM_Testimonials_Block_List_Content extends Mage_Core_Block_Template
             ->setCurPage($this->getCurrentPage());
         
         $this->setTestimonials($testimonials);
+        $this->_placeholderImage = Mage::helper('testimonials')->getPlaceholderImage();
         return parent::_beforeToHtml();
     }
 
@@ -55,5 +57,59 @@ class TM_Testimonials_Block_List_Content extends Mage_Core_Block_Template
             $perPage = Mage::helper('testimonials')->getTestimonialsPerPage();
         }
         return $perPage;
+    }
+
+    public function getAuthorInfoHtml($testimonial)
+    {
+        $authorInfo = $testimonial->getName();
+        if ($testimonial->getCompany() && Mage::helper('testimonials')->isCompanyEnabled()) {
+            $authorInfo .= ', ';
+
+            if ($testimonial->getWebsite() && Mage::helper('testimonials')->isWebsiteEnabled()) {
+                $authorInfo .= '<a href="' . $testimonial->getWebsite() . '">';
+                $authorInfo .= $testimonial->getCompany();
+                $authorInfo .= '</a>';
+            } else {
+                $authorInfo .= $testimonial->getCompany();
+            }
+        }
+
+        $authorInfo .= ', ';
+        $authorInfo .= $testimonial->getEmail();
+
+        return $authorInfo;
+    }
+
+    public function getSocialInfoHtml($testimonial)
+    {
+        $socialInfo = '';
+
+        if ($testimonial->getFacebook() && Mage::helper('testimonials')->isFacebookEnabled()) {
+            $socialInfo .= '<img src="' . Mage::helper('testimonials')->getFacebookIcon() . '" />';
+            $socialInfo .= ' <a href="' . $testimonial->getFacebook() . '">';
+            $socialInfo .= Mage::helper('testimonials')->__('Facebook') . '</a>';
+        }
+
+        if ($testimonial->getTwitter() && Mage::helper('testimonials')->isTwitterEnabled()) {
+            $socialInfo .= ', ';
+            $socialInfo .= '<img src="' . Mage::helper('testimonials')->getTwitterIcon() . '" />';
+            $socialInfo .= ' <a href="' . $testimonial->getTwitter() . '">';
+            $socialInfo .= Mage::helper('testimonials')->__('Twitter') . '</a>';
+        }
+
+        if ($socialInfo) {
+            $socialInfo = Mage::helper('testimonials')->__('Find us on') . ' ' . $socialInfo;
+        }
+
+        return $socialInfo;
+    }
+
+    public function getImagePath($testimonial) 
+    {
+        $image = $testimonial->getImage();
+        if (!$image && $this->_placeholderImage) {
+            $image = $this->_placeholderImage;
+        }
+        return $image;
     }
 }

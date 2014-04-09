@@ -163,4 +163,20 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     {
        return Mage::getStoreConfig(self::XML_PLACEHOLDER_IMAGE, $store);
     }
+    /**
+    * Return facebook icon path
+    * @return String
+    */
+    public function getFacebookIcon()
+    {
+        return Mage::getBaseUrl('media') . 'testimonials/pictures/facebook.png';
+    }
+    /**
+    * Return twitter icon path
+    * @return String
+    */
+    public function getTwitterIcon()
+    {
+        return Mage::getBaseUrl('media') . 'testimonials/pictures/twitter.png';
+    }
 }

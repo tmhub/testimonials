@@ -1,7 +1,7 @@
 .testimonials-list .testimonial {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 14px;
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 .testimonials-list .testimonial:first-child {
@@ -55,21 +55,35 @@
     float: left;
 }
 
-.testimonials-list .testimonial-info {
+.testimonials-list .testimonial-image {
     float: left;
-}
-
-.testimonials-list .testimonial .content-wrapper { 
-    clear: both; 
+    margin-top: 30px;
 }
 
 .testimonials-list .testimonial .message-wrapper {
+    clear: both;
+}
+
+.testimonials-list .testimonial .content-wrapper {
     float: left;
-    margin-top: -25px;
+}
+
+.testimonials-list .testimonial .message {
+    margin-top: 25px;
+    margin-bottom: 10px;
 }
 
 .testimonials-list .testimonial .testimonial-date {
     float: right;
+    font-size: 12px;
+}
+.testimonials-list .testimonial .rating-wrapper {
+    float: left;
+    font-size: 12px;
+}
+
+.testimonials-list .testimonial .socialInfo {
+    font-size: 12px;
 }
 
 .testimonials-list .testimonial .rating-title {
@@ -78,13 +92,31 @@
     line-height: 1.25;
 }
 
-.testimonials-list .testimonial .after-info {
-    text-align: right;
+.testimonials-list .testimonial .rating-box {
+    float: left;
 }
 
-.testimonials-list .testimonial .author-info {
+/** quotes styles */
+.testimonials-list .testimonial .bqstart {
+    float: left;
+    height: 45px;
+    margin-top: -85px;
+    padding-top: 45px;
+    margin-bottom: -50px;
+    margin-left: -10px;
+    font-size: 700%;
+    color: #ccc;
     font-style: italic;
 }
+
+.testimonials-list .testimonial .bqend {
+    float: right;
+    height: 25px;
+    margin-top: -40px;
+    font-size: 700%;
+    color: #ccc;
+    font-style: italic;
+ }
 
 /** widgets styles */
 .block-testimonials .block-title strong {
