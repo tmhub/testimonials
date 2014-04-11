@@ -1,11 +1,12 @@
 .testimonials-list .testimonial {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 14px;
-    padding-top: 40px;
+    margin-top: 40px;
+    position: relative;
 }
 
 .testimonials-list .testimonial:first-child {
-    padding-top: 0px;
+    margin-top: 0px;
 }
 
 .testimonials-list .more-button {
@@ -77,6 +78,7 @@
     float: right;
     font-size: 12px;
 }
+
 .testimonials-list .testimonial .rating-wrapper {
     float: left;
     font-size: 12px;
@@ -84,6 +86,15 @@
 
 .testimonials-list .testimonial .socialInfo {
     font-size: 12px;
+}
+
+.testimonials-list .testimonial .socialInfo, 
+.testimonials-list .testimonial .author-info {
+    padding-right: 50px;
+}
+
+.testimonials-list .testimonial .socialInfo a {
+    white-space: nowrap;
 }
 
 .testimonials-list .testimonial .rating-title {
@@ -97,25 +108,21 @@
 }
 
 /** quotes styles */
-.testimonials-list .testimonial .bqstart {
-    float: left;
-    height: 45px;
-    margin-top: -85px;
-    padding-top: 45px;
-    margin-bottom: -50px;
-    margin-left: -10px;
-    font-size: 700%;
+.testimonials-list .testimonial .bqstart,
+.testimonials-list .testimonial .bqend {
+    height: 50px;
+    position: absolute;
+    top: -15px;
+    left: -10px;
     color: #ccc;
+    font: normal 100px/100px Helvetica, Arial, sans-serif;
     font-style: italic;
 }
-
 .testimonials-list .testimonial .bqend {
-    float: right;
-    height: 25px;
-    margin-top: -40px;
-    font-size: 700%;
-    color: #ccc;
-    font-style: italic;
+    top: auto;
+    left: auto;
+    bottom: 5px;
+    right: 10px;
  }
 
 /** widgets styles */
@@ -172,4 +179,15 @@
     float: right;
     margin-top: 10px;
     font-style: italic;
+}
+
+.testimonials-list .testimonial { zoom: 1; }
+.testimonials-list .testimonial:after { content: '.'; clear: both; height: 0; font-size: 0; display: block; visibility: hidden; }
+
+@media (max-width: 480px) {
+    .testimonials-list .testimonial .testimonial-date {
+        float: left;
+        margin-bottom: 10px;
+        clear: both;
+    }
 }
