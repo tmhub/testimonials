@@ -45,6 +45,20 @@
                                     <testimonials>
                                         <title>Manage Testimonials</title>
                                         <sort_order>10</sort_order>
+                                        <children>
+                                            <save translate="title">
+                                                <title>Save</title>
+                                                <sort_order>0</sort_order>
+                                            </save>
+                                            <delete translate="title">
+                                                <title>Delete</title>
+                                                <sort_order>10</sort_order>
+                                            </delete>
+                                            <approve translate="title">
+                                                <title>Approve</title>
+                                                <sort_order>10</sort_order>
+                                            </approve>
+                                        </children>
                                     </testimonials>
                                 </children>
                             </testimonials>

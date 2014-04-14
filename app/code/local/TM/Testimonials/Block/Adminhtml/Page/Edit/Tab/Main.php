@@ -197,6 +197,6 @@ class TM_Testimonials_Block_Adminhtml_Page_Edit_Tab_Main
      */
     protected function _isAllowedAction($action)
     {
-        return Mage::getSingleton('admin/session')->isAllowed('testimonials/index/' . $action);
+        return Mage::getSingleton('admin/session')->isAllowed('templates_master/testimonials/testimonials/' . $action);
     }
 }

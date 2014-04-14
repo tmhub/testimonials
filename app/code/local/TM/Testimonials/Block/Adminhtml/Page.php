@@ -9,6 +9,10 @@ class TM_Testimonials_Block_Adminhtml_Page extends Mage_Adminhtml_Block_Widget_G
         $this->_headerText = Mage::helper('testimonials')->__('Manage Testimonials');
 
         parent::__construct();
+
+        if (!$this->_isAllowedAction('save')) {
+            $this->_removeButton('add');
+        }
     }
 
     /**
@@ -19,6 +23,6 @@ class TM_Testimonials_Block_Adminhtml_Page extends Mage_Adminhtml_Block_Widget_G
      */
     protected function _isAllowedAction($action)
     {
-        return Mage::getSingleton('admin/session')->isAllowed('testimonials/index/' . $action);
+        return Mage::getSingleton('admin/session')->isAllowed('templates_master/testimonials/testimonials/' . $action);
     }
 }

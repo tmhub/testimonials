@@ -69,28 +69,32 @@ class TM_Testimonials_Block_Adminhtml_Page_Grid extends Mage_Adminhtml_Block_Wid
         $this->setMassactionIdField('testimonial_id');
         $this->getMassactionBlock()->setFormFieldName('testimonials');
 
-        $this->getMassactionBlock()->addItem('delete', array(
-             'label'=> Mage::helper('catalog')->__('Delete'),
-             'url'  => $this->getUrl('*/*/massDelete'),
-             'confirm' => Mage::helper('catalog')->__('Are you sure?')
-        ));
+        if ($this->_isAllowedAction('delete')) {
+            $this->getMassactionBlock()->addItem('delete', array(
+                 'label'=> Mage::helper('catalog')->__('Delete'),
+                 'url'  => $this->getUrl('*/*/massDelete'),
+                 'confirm' => Mage::helper('catalog')->__('Are you sure?')
+            ));
+        }
 
-        $statuses = Mage::getSingleton('tm_testimonials/data')->getAvailableStatuses();
+        if ($this->_isAllowedAction('approve')) {
+            $statuses = Mage::getSingleton('tm_testimonials/data')->getAvailableStatuses();
 
-        array_unshift($statuses, array('label'=>'', 'value'=>''));
-        $this->getMassactionBlock()->addItem('status', array(
-             'label'=> Mage::helper('catalog')->__('Change status'),
-             'url'  => $this->getUrl('*/*/massStatus', array('_current'=>true)),
-             'additional' => array(
-                    'visibility' => array(
-                         'name' => 'status',
-                         'type' => 'select',
-                         'class' => 'required-entry',
-                         'label' => Mage::helper('catalog')->__('Status'),
-                         'values' => $statuses
-                     )
-             )
-        ));
+            array_unshift($statuses, array('label'=>'', 'value'=>''));
+            $this->getMassactionBlock()->addItem('status', array(
+                 'label'=> Mage::helper('catalog')->__('Change status'),
+                 'url'  => $this->getUrl('*/*/massStatus', array('_current'=>true)),
+                 'additional' => array(
+                        'visibility' => array(
+                             'name' => 'status',
+                             'type' => 'select',
+                             'class' => 'required-entry',
+                             'label' => Mage::helper('catalog')->__('Status'),
+                             'values' => $statuses
+                         )
+                 )
+            ));
+        }
         
         return $this;
     }
@@ -112,5 +116,15 @@ class TM_Testimonials_Block_Adminhtml_Page_Grid extends Mage_Adminhtml_Block_Wid
     public function getRowUrl($row)
     {
         return $this->getUrl('*/*/edit', array('testimonial_id' => $row->getTestimonialId()));
+    }
+    /**
+     * Check permission for passed action
+     *
+     * @param string $action
+     * @return bool
+     */
+    protected function _isAllowedAction($action)
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('templates_master/testimonials/testimonials/' . $action);
     }
 }

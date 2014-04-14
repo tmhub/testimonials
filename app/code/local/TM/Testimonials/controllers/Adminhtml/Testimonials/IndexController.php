@@ -233,16 +233,16 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
         switch ($this->getRequest()->getActionName()) {
             case 'new':
             case 'save':
-                return Mage::getSingleton('admin/session')->isAllowed('testimonials/index/save');
+                return Mage::getSingleton('admin/session')->isAllowed('templates_master/testimonials/testimonials/save');
                 break;
             case 'delete':
-                return Mage::getSingleton('admin/session')->isAllowed('testimonials/index/delete');
+                return Mage::getSingleton('admin/session')->isAllowed('templates_master/testimonials/testimonials/delete');
                 break;
             case 'approve':
-                return Mage::getSingleton('admin/session')->isAllowed('testimonials/index/approve');
+                return Mage::getSingleton('admin/session')->isAllowed('templates_master/testimonials/testimonials/approve');
                 break;
             default:
-                return Mage::getSingleton('admin/session')->isAllowed('testimonials/index');
+                return Mage::getSingleton('admin/session')->isAllowed('templates_master/testimonials/testimonials');
                 break;
         }
     }
