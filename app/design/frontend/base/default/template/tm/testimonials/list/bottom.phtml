@@ -2,10 +2,15 @@
     <div class="more-button">
         <a id="viewMore" target="blank" href=""><?php echo $this->__('Show more testimonials') ?></a>
     </div>
+    <div class="copyright">
+        <!-- This extension is available under Creative Commons License http://creativecommons.org/licenses/by/3.0/. Removing links to is similarly prohibited. -->
+        Magento testimonial extension by <a href="http://templates-master.com/magento-extensions.html" title="Magento extensions by Templates-master.com" rel="nofollow" target="_blank">templates-master.com</a>
+        <!-- Removing links to is similarly prohibited.  -->
+    </div>
 </div>
 <script type="text/javascript">
 //<![CDATA[
-    var testimonials = new Testimonials("<?php echo $this->getUrl('testimonials/index/index') ?>", 
+    var testimonials = new Testimonials("<?php echo $this->getUrl('testimonials/index/index') ?>",
                                         '.testimonials');
     $('viewMore').observe('click', testimonials.makeAjaxCall.bind(testimonials));
     <?php $_testimonials = $this->getTestimonials(); ?>
