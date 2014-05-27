@@ -2,9 +2,9 @@
 <div class="page-title">
     <h1><?php echo $this->__('Submit your testimonial') ?></h1>
 </div>
-<form action="<?php echo $this->getUrl('testimonials/index/post'); ?>" 
-      id="testimonialForm" 
-      method="post" 
+<form action="<?php echo $this->getUrl('testimonials/index/post'); ?>"
+      id="testimonialForm"
+      method="post"
       enctype="multipart/form-data">
     <div class="fieldset">
         <h2 class="legend"><?php echo $this->__('Testimonial') ?></h2>
@@ -13,8 +13,8 @@
                 <div class="field">
                     <label for="name" class="required"><em>*</em><?php echo $this->__('Name') ?></label>
                     <div class="input-box">
-                       <input name="name" id="name" 
-                       title="<?php echo $this->__('Name') ?>" 
+                       <input name="name" id="name"
+                       title="<?php echo $this->__('Name') ?>"
                        value="<?php echo $this->escapeHtml($this->getUserName()) ?>" class="input-text required-entry" type="text" />
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="field">
                     <label for="image"><?php echo $this->__('Profile image') ?></label>
                     <div class="input-box">
-                        <input name="image" id="image" title="<?php echo $this->__('Image') ?>" 
+                        <input name="image" id="image" title="<?php echo $this->__('Image') ?>"
                         type="file" />
                     </div>
                 </div>
@@ -74,10 +74,10 @@
                     </div>
                 </div>
             </li>
-            <li class="wide">
+            <li <?php if (Mage::helper('testimonials')->getFormLayout() != "three_columns"): ?>class="wide"<?php endif ?>>
                 <label for="message" class="required"><em>*</em><?php echo $this->__('Message') ?></label>
                 <div class="input-box">
-                    <textarea name="message" id="message" title="<?php echo $this->__('Message') ?>" 
+                    <textarea name="message" id="message" title="<?php echo $this->__('Message') ?>"
                         class="required-entry input-text" cols="5" rows="3"><?php echo $this->getUserMessage(); ?></textarea>
                 </div>
             </li>

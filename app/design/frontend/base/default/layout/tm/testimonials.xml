@@ -6,9 +6,8 @@
         </reference>
     </default>
     <tm_testimonials_index_new>
-        <update handle="page_two_columns_left"/>
         <reference name="content">
-        	<block type="testimonials/form" name="testimonials.form" 
+        	<block type="testimonials/form" name="testimonials.form"
         		   template="tm/testimonials/form.phtml" as="testimonials_form">
                 <block type="captcha/captcha" name="captcha">
                     <reference name="head">
@@ -28,14 +27,13 @@
         </reference>
     </tm_testimonials_index_new>
     <tm_testimonials_index_index>
-        <update handle="page_one_column"/>
         <reference name="content">
-            <block type="testimonials/list_content" name="testimonials.list.content" 
+            <block type="testimonials/list_content" name="testimonials.list.content"
                    template="tm/testimonials/list/content.phtml">
-                <block type="testimonials/list_title" name="testimonials.list.title" 
+                <block type="testimonials/list_title" name="testimonials.list.title"
                        template="tm/testimonials/list/title.phtml">
                 </block>
-                <block type="testimonials/list_bottom" name="testimonials.list.bottom" 
+                <block type="testimonials/list_bottom" name="testimonials.list.bottom"
                        template="tm/testimonials/list/bottom.phtml">
                 </block>
             </block>

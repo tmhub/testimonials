@@ -109,18 +109,22 @@
         <testimonials>
             <general>
                 <enabled>0</enabled>
-                <enable_company>0</enable_company>
-                <enable_website>0</enable_website>
-                <enable_twitter>0</enable_twitter>
-                <enable_facebook>0</enable_facebook>
-                <sent_message>Thank you for your testimonial</sent_message>
             </general>
             <list>
+                <layout>one_column</layout>
                 <items_per_page>10</items_per_page>
                 <image_width>100</image_width>
                 <image_height>100</image_height>
                 <placeholder_image>empty.gif</placeholder_image>
             </list>
+            <form>
+                <layout>two_columns_left</layout>
+                <enable_company>0</enable_company>
+                <enable_website>0</enable_website>
+                <enable_twitter>0</enable_twitter>
+                <enable_facebook>0</enable_facebook>
+                <sent_message>Thank you for your testimonial</sent_message>
+            </form>
         </testimonials>
     </default>
     <admin>

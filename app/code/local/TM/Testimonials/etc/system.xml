@@ -33,6 +33,78 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </enabled>
+                    </fields>
+                </general>
+                <list translate="label" module="testimonials">
+                    <label>Testimonials List</label>
+                    <sort_order>610</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <layout translate="label">
+                            <label>Testimonials list layout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>page/source_layout</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout>
+                        <items_per_page translate="label">
+                            <label>Testimonials per page</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </items_per_page>
+                        <image_width translate="label">
+                            <label>Image width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </image_width>
+                        <image_height translate="label">
+                            <label>Image height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </image_height>
+                        <placeholder_image translate="label comment">
+                            <label>Image placeholder</label>
+                            <comment>Allowed file types: jpeg, gif, png.</comment>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>tm_testimonials/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">testimonials/pictures</upload_dir>
+                            <base_url type="media" scope_info="1">testimonials/pictures</base_url>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </placeholder_image>
+                    </fields>
+                </list>
+                <form translate="label" module="testimonials">
+                    <label>Testimonials Submit Form</label>
+                    <sort_order>620</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <layout translate="label">
+                            <label>Testimonials form layout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>page/source_layout</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout>
                         <enable_company translate="label">
                             <label>Enable company field</label>
                             <frontend_type>select</frontend_type>
@@ -78,52 +150,7 @@
                             <show_in_store>1</show_in_store>
                         </sent_message>
                     </fields>
-                </general>
-                <list translate="label" module="testimonials">
-                    <label>Testimonials List</label>
-                    <sort_order>610</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
-                    <fields>
-                        <items_per_page translate="label">
-                            <label>Testimonials per page</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </items_per_page>
-                        <image_width translate="label">
-                            <label>Image width</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>30</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </image_width>
-                        <image_height translate="label">
-                            <label>Image height</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </image_height>
-                        <placeholder_image translate="label comment">
-                            <label>Image placeholder</label>
-                            <comment>Allowed file types: jpeg, gif, png.</comment>
-                            <frontend_type>image</frontend_type>
-                            <backend_model>tm_testimonials/system_config_backend_image</backend_model>
-                            <upload_dir config="system/filesystem/media" scope_info="1">testimonials/pictures</upload_dir>
-                            <base_url type="media" scope_info="1">testimonials/pictures</base_url>
-                            <sort_order>50</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </placeholder_image>
-                    </fields>
-                </list>
+                </form>
             </groups>
         </testimonials>
     </sections>

@@ -1,14 +1,14 @@
 <?php
-	class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action 
+	class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
 	{
-        /** 
-         * Pre dispatch action that allows to redirect to no route page in case 
-         * of disabled extension through Admin panel 
-         */ 
+        /**
+         * Pre dispatch action that allows to redirect to no route page in case
+         * of disabled extension through Admin panel
+         */
         public function preDispatch()
         {
             parent::preDispatch();
-     
+
             if (!Mage::helper('testimonials')->isEnabled()) {
                 $this->setFlag('', 'no-dispatch', true);
                 $this->_redirect('noRoute');
@@ -32,22 +32,30 @@
                 $this->getLayout()->getBlock('head')->setTitle(
                     Mage::helper('testimonials')->__('Testimonials')
                 );
+                //apply custom layout from config
+                $this->getLayout()->getBlock('root')
+                     ->helper('page/layout')
+                     ->applyTemplate(Mage::helper('testimonials')->getListLayout());
                 $this->renderLayout();
             }
 		}
 
-        public function newAction() 
+        public function newAction()
         {
             $this->loadLayout();
             $this->_initLayoutMessages('customer/session');
             $this->_initLayoutMessages('catalog/session');
             $this->getLayout()->getBlock('head')->setTitle(
                 Mage::helper('testimonials')->__('New Testimonial')
-            ); 
+            );
+            //apply custom layout from config
+            $this->getLayout()->getBlock('root')
+                 ->helper('page/layout')
+                 ->applyTemplate(Mage::helper('testimonials')->getFormLayout());
             $this->renderLayout();
         }
 
-        public function postAction() 
+        public function postAction()
         {
             $this->_initLayoutMessages('customer/session');
             // check if data sent
@@ -98,7 +106,7 @@
             $this->_redirect('*/*/new');
         }
 
-        private function showError($error, $data) 
+        private function showError($error, $data)
         {
             Mage::getSingleton('customer/session')->addError($error);
             Mage::getSingleton('customer/session')->setTestimonialsFormData($data);
