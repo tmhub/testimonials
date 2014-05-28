@@ -84,7 +84,9 @@
                         $uploadedImg = $uploader->getUploadedFileName();
                         $model->setImage($uploadedImg);
                     } catch (Exception $e) {
-                        $this->showError($e->getMessage(), $data);
+                        Mage::getSingleton('customer/session')->addError($e->getMessage());
+                        Mage::getSingleton('customer/session')->setTestimonialsFormData($data);
+                        $this->_redirectReferer();
                         return;
                     }
                 }
@@ -96,20 +98,13 @@
                                         addSuccess(Mage::helper('testimonials')->
                                         getSentMessage());
                     Mage::getSingleton('customer/session')->unsTestimonialsFormData();
-                    $this->_redirect('*/*/new');
-                    return;
                 } catch (Exception $e) {
-                    $this->showError($e->getMessage(), $data);
+                    Mage::getSingleton('customer/session')->addError($e->getMessage());
+                    Mage::getSingleton('customer/session')->setTestimonialsFormData($data);
+                    $this->_redirectReferer();
                     return;
                 }
             }
-            $this->_redirect('*/*/new');
-        }
-
-        private function showError($error, $data)
-        {
-            Mage::getSingleton('customer/session')->addError($error);
-            Mage::getSingleton('customer/session')->setTestimonialsFormData($data);
-            $this->_redirect('*/*/new');
+            $this->_redirectReferer();
         }
 	}

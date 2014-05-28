@@ -1,5 +1,5 @@
 <?php
-class TM_Testimonials_Block_Form extends Mage_Core_Block_Template 
+class TM_Testimonials_Block_Form_Form extends Mage_Core_Block_Template
 {
     public function getUserName()
     {
@@ -65,7 +65,7 @@ class TM_Testimonials_Block_Form extends Mage_Core_Block_Template
         return false;
     }
 
-    protected function _getSessionData($key) 
+    protected function _getSessionData($key)
     {
         $data = Mage::getSingleton('customer/session')->getTestimonialsFormData();
         if ($data && isset($data[$key])) {

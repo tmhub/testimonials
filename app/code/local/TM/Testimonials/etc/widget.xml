@@ -8,4 +8,8 @@
         <name>Testimonials: Review block</name>
         <description type="desc">Shows number of testimonials and average testimonial rating</description>
     </testimonials_review>
+    <testimonials_form type="testimonials/widget_form" translate="name" module="testimonials">
+        <name>Testimonials: Submit Form</name>
+        <description type="desc">Shows testimonials submit form</description>
+    </testimonials_form>
 </widgets>

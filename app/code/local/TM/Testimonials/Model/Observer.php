@@ -13,7 +13,7 @@ class TM_Testimonials_Model_Observer
         $captchaParams = $request->getPost(Mage_Captcha_Helper_Data::INPUT_NAME_FIELD_VALUE);
         return $captchaParams[$formId];
     }
- 
+
     /**
      * Break the execution in case of incorrect CAPTCHA
      *
@@ -30,10 +30,13 @@ class TM_Testimonials_Model_Observer
                 Mage::getSingleton('customer/session')->addError(Mage::helper('captcha')->__('Incorrect CAPTCHA.'));
                 $controller->setFlag('', Mage_Core_Controller_Varien_Action::FLAG_NO_DISPATCH, true);
                 Mage::getSingleton('customer/session')->setTestimonialsFormData($controller->getRequest()->getPost());
-                $controller->getResponse()->setRedirect(Mage::getUrl('*/*/new'));
+                $url = Mage::helper('core/http')->getHttpReferer() ?
+                    Mage::helper('core/http')->getHttpReferer() :
+                    Mage::getUrl();
+                $controller->getResponse()->setRedirect($url);
             }
         }
- 
+
         return $this;
     }
 }

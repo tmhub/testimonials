@@ -1,9 +1,6 @@
-<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
-<div class="page-title">
-    <h1><?php echo $this->__('Submit your testimonial') ?></h1>
-</div>
 <form action="<?php echo $this->getUrl('testimonials/index/post'); ?>"
       id="testimonialForm"
+      class="testimonialForm"
       method="post"
       enctype="multipart/form-data">
     <div class="fieldset">
@@ -74,7 +71,8 @@
                     </div>
                 </div>
             </li>
-            <li <?php if (Mage::helper('testimonials')->getFormLayout() != "three_columns"): ?>class="wide"<?php endif ?>>
+            <li <?php if ($this->getLayout()->getBlock('root')
+                        ->getTemplate() != "page/3columns.phtml"): ?>class="wide"<?php endif ?>>
                 <label for="message" class="required"><em>*</em><?php echo $this->__('Message') ?></label>
                 <div class="input-box">
                     <textarea name="message" id="message" title="<?php echo $this->__('Message') ?>"

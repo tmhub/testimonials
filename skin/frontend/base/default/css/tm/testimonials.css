@@ -187,6 +187,10 @@
     font-style: italic;
 }
 
+.std .testimonialForm li {
+    list-style: none;
+}
+
 .testimonials-list .testimonial { zoom: 1; }
 .testimonials-list .testimonial:after { content: '.'; clear: both; height: 0; font-size: 0; display: block; visibility: hidden; }
 
