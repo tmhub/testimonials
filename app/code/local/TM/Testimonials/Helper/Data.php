@@ -8,6 +8,12 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
      */
     const XML_PATH_ENABLED            = 'testimonials/general/enabled';
     /**
+     * Path to store config of testimonial auto approve
+     *
+     * @var string
+     */
+    const XML_PATH_APPROVE            = 'testimonials/general/approve';
+    /**
      * Path to store config for testimonials list layout
      *
      * @var string
@@ -205,5 +211,15 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     public function getFormLayout($store = null)
     {
         return Mage::getStoreConfig(self::XML_FORM_LAYOUT, $store);
+    }
+    /**
+     * Checks whether testimonials should be approved automatically
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return boolean
+     */
+    public function isAutoApprove($store = null)
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_APPROVE, $store);
     }
 }

@@ -71,6 +71,8 @@
                 $model->setTwitter($data['twitter']);
                 $model->setFacebook($data['facebook']);
                 if (isset($data['rating'])) $model->setRating($data['rating']);
+                if (Mage::helper('testimonials')->isAutoApprove())
+                    $model->setStatus(TM_Testimonials_Model_Data::STATUS_ENABLED);
 
                 // upload image
                 if (isset($_FILES['image']['name']) && ($_FILES['image']['tmp_name'] != NULL)) {

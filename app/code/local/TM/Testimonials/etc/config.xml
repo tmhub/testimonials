@@ -109,6 +109,7 @@
         <testimonials>
             <general>
                 <enabled>0</enabled>
+                <approve>0</approve>
             </general>
             <list>
                 <layout>one_column</layout>
