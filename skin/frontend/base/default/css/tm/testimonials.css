@@ -67,6 +67,7 @@
 
 .testimonials-list .testimonial .content-wrapper {
     float: left;
+    width: 100%;
 }
 
 .testimonials-list .testimonial .message {
@@ -86,6 +87,7 @@
 
 .testimonials-list .testimonial .socialInfo {
     font-size: 12px;
+    padding-top: 5px;
 }
 
 .testimonials-list .testimonial .socialInfo,
@@ -95,6 +97,11 @@
 
 .testimonials-list .testimonial .socialInfo a {
     white-space: nowrap;
+}
+
+.testimonials-list .testimonial .socialInfo img {
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .testimonials-list .testimonial .rating-title {
