@@ -34,7 +34,7 @@ class TM_Testimonials_Block_Widget_List extends Mage_Core_Block_Template
         );
     }
 
-    public function getTemplate() 
+    public function getTemplate()
     {
         $template = parent::getTemplate();
         if (!$template) {
@@ -45,19 +45,22 @@ class TM_Testimonials_Block_Widget_List extends Mage_Core_Block_Template
 
     protected function _beforeToHtml()
     {
-        $testimonial = Mage::getModel('tm_testimonials/data')->getCollection()
+        $testimonials = Mage::getModel('tm_testimonials/data')->getCollection()
             ->addFieldToFilter('status', TM_Testimonials_Model_Data::STATUS_ENABLED)
             ->addStoreFilter(Mage::app()->getStore())
             ->addFieldToFilter('widget', 1);
 
-        $testimonial->getSelect()->order(new Zend_Db_Expr('RAND()'))->limit(1);
-        $this->setTestimonial($testimonial->getFirstItem());
+        $testimonials->getSelect()
+                    ->order(new Zend_Db_Expr('RAND()'))
+                    ->limit(Mage::helper('testimonials')->getItemsNumInWidget());
+
+        $this->setTestimonials($testimonials);
         return parent::_beforeToHtml();
     }
 
     protected function _toHtml()
     {
-        if ($this->getTestimonial() && $this->getTestimonial()->getWidget()) {
+        if ($this->getTestimonials()) {
             return parent::_toHtml();
         }
         return '';

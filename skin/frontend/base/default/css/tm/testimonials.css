@@ -166,7 +166,24 @@
 }
 
 .block-testimonials .block-content .content {
-    padding: 10px 10px 30px 10px;
+    padding: 10px 10px 20px 10px;
+}
+
+.block-testimonials .block-content .testimonial-container {
+    min-height: 130px;
+}
+
+.block-testimonials .block-content .content .content-wrapper {
+    height: 75px;
+    min-height: 75px;
+    display: block;
+    overflow: hidden;
+}
+
+.block-testimonials .block-content .read-more,
+.block-testimonials .block-content .read-less {
+    padding-top: 10px;
+    display: inline-block;
 }
 
 .block-testimonials .block-content .review {

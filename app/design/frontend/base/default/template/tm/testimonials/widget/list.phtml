@@ -1,19 +1,96 @@
-<?php $testimonial = $this->getTestimonial(); ?>
-<div class="block block-testimonials">
+<?php $testimonials = $this->getTestimonials(); ?>
+<div id="testimonialsList" class="block block-testimonials">
     <div class="block-title">
         <strong><span><?php echo $this->__('Testimonials') ?></span></strong>
     </div>
     <div class="block-content">
-        <div class="content">
-            <?php if ($testimonial->getRating()): ?>
-                <div class="rating-title"><?php echo $this->__('Rating: ') ?></div>
-                <div class="rating-box"><div class="rating" style="width: <?php echo $testimonial->getRating() / 5 * 100 ?>%;"></div></div>
-            <?php endif ?>
-            <div class="message"><?php echo $testimonial->getMessage(); ?></div>
-            <div class="name"><?php echo $testimonial->getName(); ?></div>
+        <div class="testimonial-container">
+            <?php $itemId = 0; ?>
+            <?php foreach ($testimonials as $testimonial): ?>
+                <div id="testimonial_<?php echo $itemId ?>" class="content"
+                <?php if ($itemId > 0): ?> style="display: none;"<?php endif ?>>
+                    <div class="content-wrapper">
+                        <?php if ($testimonial->getRating()): ?>
+                            <div class="rating-title"><?php echo $this->__('Rating: ') ?></div>
+                            <div class="rating-box"><div class="rating" style="width: <?php echo $testimonial->getRating() / 5 * 100 ?>%;"></div></div>
+                        <?php endif ?>
+                        <div class="message"><?php echo $testimonial->getMessage(); ?></div>
+                    </div>
+                    <div class="name"><?php echo $testimonial->getName(); ?></div>
+                    <a class="read-more" href="#"><?php echo $this->__('Read more') ?></a>
+                    <a class="read-less" href="#" style="display: none;"><?php echo $this->__('Read less') ?></a>
+                </div>
+                <?php ++$itemId; ?>
+            <?php endforeach; ?>
         </div>
         <div class="actions">
             <a href="<?php echo $this->getUrl('testimonials') ?>"><?php echo $this->__('View all testimonials') ?></a>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+//<![CDATA[
+    var curTestimonial = 0,
+        showMoreActive = false,
+        changeInterval,
+        contentHeight = $$('.block-testimonials .block-content .content .content-wrapper')[0].getStyle('height'),
+        numTestimonials = <?php echo count($testimonials); ?>,
+        viewTime = <?php echo Mage::helper('testimonials')->getViewTimeInWidget(); ?>,
+        changeAnimDuration = <?php echo Mage::helper('testimonials')
+                                    ->getChangeAnimDurationInWidget(); ?>;
+
+    startChangeTimer();
+
+    Event.observe('testimonialsList', 'mouseenter', function() {
+        if (!showMoreActive) clearInterval(changeInterval);
+    });
+
+    Event.observe('testimonialsList', 'mouseleave', startChangeTimer);
+
+    Event.observe($('testimonial_0').down('.read-more'), 'click', showMore);
+    Event.observe($('testimonial_0').down('.read-less'), 'click', showLess);
+
+    function showMore(e) {
+        e.stop();
+        showMoreActive = true;
+        this.hide();
+        this.up().down('.read-less').show();
+        this.up().down('.content-wrapper').setStyle( { height: 'auto' } );
+    }
+
+    function showLess(e) {
+        e.stop();
+        showMoreActive = false;
+        this.hide();
+        this.up().down('.read-more').show();
+        this.up().down('.content-wrapper').setStyle( { height: contentHeight } );
+    }
+
+    function startChangeTimer() {
+        if (!showMoreActive) {
+            changeInterval = setInterval(nextTestimonial, viewTime);
+        }
+    }
+
+    function nextTestimonial() {
+        $('testimonial_' + curTestimonial).down('.read-more').stopObserving();
+        $('testimonial_' + curTestimonial).down('.read-less').stopObserving();
+        Effect.Fade('testimonial_' + curTestimonial, {
+            duration: changeAnimDuration / 1000
+        });
+
+        ++curTestimonial;
+        if (curTestimonial >= numTestimonials) curTestimonial = 0;
+
+        setTimeout(function() {
+            Effect.Appear('testimonial_' + curTestimonial, {
+                duration: changeAnimDuration / 1000
+            });
+            Event.observe($('testimonial_' + curTestimonial).down('.read-more'),
+                'click', showMore);
+            Event.observe($('testimonial_' + curTestimonial).down('.read-less'),
+                'click', showLess);
+        }, changeAnimDuration);
+    }
+//]]>
+</script>
