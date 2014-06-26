@@ -18,7 +18,7 @@ class TM_Testimonials_Model_Observer
      * Break the execution in case of incorrect CAPTCHA
      *
      * @param Varien_Event_Observer $observer
-     * @return Your_Module_Model_Observer
+     * @return TM_Testimonials_Model_Observer
      */
     public function checkCaptcha($observer)
     {
@@ -36,6 +36,62 @@ class TM_Testimonials_Model_Observer
                 $controller->getResponse()->setRedirect($url);
             }
         }
+
+        return $this;
+    }
+    /**
+     * Send notification for admin about new testimonial added
+     *
+     * @param Varien_Event_Observer $observer
+     * @return TM_Testimonials_Model_Observer
+     */
+    public function sendNotificationToAdmin(Varien_Event_Observer $observer)
+    {
+        if (!Mage::helper('testimonials')->isAdminNotificationEnabled()) {
+            return $this;
+        }
+
+        $emailData = $observer->getEvent()->getTestimonial();
+        $adminEmail = Mage::helper('testimonials')->getAdminEmail();
+        $subject = Mage::helper('testimonials')->getAdminEmailSubject();
+        $templateId = Mage::helper('testimonials')->getAdminEmailTemplate();
+        $senderId = Mage::helper('testimonials')->getAdminNotificationSendFrom();
+
+        $storeId = Mage::app()->getStore()->getId();
+        $image = $emailData['image'] ? Mage::helper('testimonials')->__("Yes") :
+            Mage::helper('testimonials')->__("No");
+        $status = Mage::getModel('tm_testimonials/data')
+            ->getAvailableStatuses()[$emailData['status']];
+        $vars = array(
+            'admin_subject' => $subject,
+            'user_name' => $emailData['name'],
+            'user_email' => $emailData['email'],
+            'message' => $emailData['message'],
+            'company' => $emailData['company'],
+            'website' => $emailData['website'],
+            'facebook' => $emailData['facebook'],
+            'twitter' => $emailData['twitter'],
+            'rating' => $emailData['rating'],
+            'image' =>  $image,
+            'status' => $status,
+            'store_view' => Mage::app()->getStore()->getFrontendName()
+        );
+
+        $translate = Mage::getSingleton('core/translate');
+        $translate->setTranslateInline(false);
+
+        $mailTemplate = Mage::getModel('core/email_template');
+        $mailTemplate->setTemplateSubject($subject)
+            ->setDesignConfig(array('area' => 'frontend', 'store' => $storeId))
+            ->sendTransactional(
+                $templateId,
+                $senderId,
+                $adminEmail,
+                Mage::helper('testimonials')->__('Store Administrator'),
+                $vars
+        );
+
+        $translate->setTranslateInline(true);
 
         return $this;
     }

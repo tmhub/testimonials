@@ -100,6 +100,19 @@
                                         addSuccess(Mage::helper('testimonials')->
                                         getSentMessage());
                     Mage::getSingleton('customer/session')->unsTestimonialsFormData();
+
+                    // send email notification to admin
+                    try {
+                        $data['status'] = $model->getStatus();
+                        $data['image'] = $model->getImage();
+                        Mage::dispatchEvent('testimonials_notify_admin_testimonial_submit',
+                            array( 'testimonial'  => $data )
+                        );
+                    } catch (Mage_Core_Exception $e) {
+                        Mage::getSingleton('customer/session')->addError(
+                            $e->getMessage()
+                        );
+                    }
                 } catch (Exception $e) {
                     Mage::getSingleton('customer/session')->addError($e->getMessage());
                     Mage::getSingleton('customer/session')->setTestimonialsFormData($data);

@@ -51,6 +51,16 @@
                 <class>TM_Testimonials_Helper</class>
             </testimonials>
         </helpers>
+        <template>
+            <email>
+                <testimonials_email_admin_email_template translate="label"
+                    module="testimonials">
+                    <label>Testimonials Administrator Notification</label>
+                    <file>testimonials_admin_notification.html</file>
+                    <type>html</type>
+                </testimonials_email_admin_email_template>
+            </email>
+        </template>
     </global>
     <frontend>
         <routers>
@@ -87,6 +97,22 @@
                     </testimonials>
                 </observers>
             </controller_action_predispatch_tm_testimonials_index_post>
+            <testimonials_notify_admin_testimonial_submit>
+                <observers>
+                    <testimonials>
+                        <class>tm_testimonials/observer</class>
+                        <method>sendNotificationToAdmin</method>
+                    </testimonials>
+                </observers>
+            </testimonials_notify_admin_testimonial_submit>
+            <testimonials_remind_customer_place_testimonial>
+                <observers>
+                    <testimonials>
+                        <class>tm_testimonials/observer</class>
+                        <method>sendReminderToCustomer</method>
+                    </testimonials>
+                </observers>
+            </testimonials_remind_customer_place_testimonial>
         </events>
     </frontend>
     <default>
@@ -131,6 +157,13 @@
                 <view_time>10000</view_time>
                 <anim_duration>1000</anim_duration>
             </widget>
+            <email_admin>
+                <send_enable>0</send_enable>
+                <send_from>0</send_from>
+                <admin_email></admin_email>
+                <email_subject>New testimonial was submitted</email_subject>
+                <email_template>testimonials_email_admin_email_template</email_template>
+            </email_admin>
         </testimonials>
     </default>
     <admin>

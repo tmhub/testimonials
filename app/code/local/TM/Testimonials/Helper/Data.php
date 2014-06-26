@@ -97,6 +97,36 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
      * @var string
      */
     const XML_ANIM_DURATION_WIDGET                = 'testimonials/widget/anim_duration';
+    /**
+     * Path to store config admin email notification enable
+     *
+     * @var string
+     */
+    const XML_ADMIN_EMAIL_ENABLED                = 'testimonials/email_admin/send_enable';
+    /**
+     * Path to store config send email for admin from
+     *
+     * @var string
+     */
+    const XML_ADMIN_EMAIL_SEND_FROM              = 'testimonials/email_admin/send_from';
+    /**
+     * Path to store config admin email
+     *
+     * @var string
+     */
+    const XML_ADMIN_EMAIL              = 'testimonials/email_admin/admin_email';
+    /**
+     * Path to store config admin email subject
+     *
+     * @var string
+     */
+    const XML_ADMIN_EMAIL_SUBJECT              = 'testimonials/email_admin/email_subject';
+    /**
+     * Path to store config admin email template
+     *
+     * @var string
+     */
+    const XML_ADMIN_EMAIL_TEMPLATE              = 'testimonials/email_admin/email_template';
 
     /**
      * Checks whether testimonials can be displayed in the frontend
@@ -269,5 +299,55 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     public function getChangeAnimDurationInWidget($store = null)
     {
         return abs((int)Mage::getStoreConfig(self::XML_ANIM_DURATION_WIDGET, $store));
+    }
+    /**
+     * Checks if send email for admin enabled
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return boolean
+     */
+    public function isAdminNotificationEnabled($store = null)
+    {
+        return Mage::getStoreConfigFlag(self::XML_ADMIN_EMAIL_ENABLED, $store);
+    }
+    /**
+     * Return admin email send from contact
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return String
+     */
+    public function getAdminNotificationSendFrom($store = null)
+    {
+        return Mage::getStoreConfig(self::XML_ADMIN_EMAIL_SEND_FROM, $store);
+    }
+    /**
+     * Return admin email
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return String
+     */
+    public function getAdminEmail($store = null)
+    {
+        return Mage::getStoreConfig(self::XML_ADMIN_EMAIL, $store);
+    }
+    /**
+     * Return admin email subject
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return String
+     */
+    public function getAdminEmailSubject($store = null)
+    {
+        return Mage::getStoreConfig(self::XML_ADMIN_EMAIL_SUBJECT, $store);
+    }
+    /**
+     * Return admin email template
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return String
+     */
+    public function getAdminEmailTemplate($store = null)
+    {
+        return Mage::getStoreConfig(self::XML_ADMIN_EMAIL_TEMPLATE, $store);
     }
 }
