@@ -105,14 +105,6 @@
                     </testimonials>
                 </observers>
             </testimonials_notify_admin_testimonial_submit>
-            <testimonials_remind_customer_place_testimonial>
-                <observers>
-                    <testimonials>
-                        <class>tm_testimonials/observer</class>
-                        <method>sendReminderToCustomer</method>
-                    </testimonials>
-                </observers>
-            </testimonials_remind_customer_place_testimonial>
         </events>
     </frontend>
     <default>
