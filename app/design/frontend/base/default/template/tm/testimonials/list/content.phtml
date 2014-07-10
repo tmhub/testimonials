@@ -1,8 +1,8 @@
-    <?php 
+    <?php
         if (!$this->getIsAjax()) {
-            echo $this->getChildHtml('testimonials.list.title'); 
+            echo $this->getChildHtml('testimonials.list.title');
         }
-        $_testimonials = $this->getTestimonials(); 
+        $_testimonials = $this->getTestimonials();
         $_width = Mage::helper('testimonials')->getImageWidth();
         $_height = Mage::helper('testimonials')->getImageHeight();
     ?>
@@ -13,7 +13,7 @@
                 <?php if ($image = $this->getImagePath($_testimonial)): ?>
                 <div class="testimonial-image" style="width: <?php echo ($_width + 10) ?>px">
                     <img src="<?php echo $this->helper('testimonials/image')->
-                    init($image)->resize($_width, $_height); ?>" 
+                    init($image)->resize($_width, $_height); ?>"
                     alt="Profile image" />
                 </div>
                 <?php endif ?>
@@ -34,28 +34,30 @@
                         <div class="message-wrapper">
                             <div class="message"><?php echo $_testimonial->getMessage() ?></div>
                             <div class="author-info">
-                                <?php echo $_testimonial->getName(); 
-                                    if ($_testimonial->getCompany() && 
+                                <?php echo $_testimonial->getName();
+                                    if ($_testimonial->getCompany() &&
                                         Mage::helper('testimonials')->isCompanyEnabled()): ?>,
-                                    <?php if ($_testimonial->getWebsite() && 
+                                    <?php if ($_testimonial->getWebsite() &&
                                               Mage::helper('testimonials')->isWebsiteEnabled()): ?>
                                         <a href="<?php echo $_testimonial->getWebsite() ?>">
-                                        <?php echo $_testimonial->getCompany(); ?></a><?php 
+                                        <?php echo $_testimonial->getCompany(); ?></a><?php
                                         else:
                                             echo $_testimonial->getCompany();
                                         endif;
-                                    endif; ?>,
-                                    <?php echo $_testimonial->getEmail(); ?>
+                                    endif; ?>
+                                    <?php if (Mage::helper('testimonials')->showUserEmail()):
+                                        echo ', ' . $_testimonial->getEmail();
+                                    endif ?>
                             </div>
                             <?php if ($this->canShowSocial($_testimonial)): ?>
                             <div class="socialInfo">
                                 <?php echo Mage::helper('testimonials')->__('Find us on'); ?>
-                                <?php if ($_testimonial->getFacebook() && 
+                                <?php if ($_testimonial->getFacebook() &&
                                           Mage::helper('testimonials')->isFacebookEnabled()): ?>
                                     <a href="<?php echo $_testimonial->getFacebook() ?>">
                                     <img src="<?php echo Mage::helper('testimonials')->getFacebookIcon() ?>" /><?php echo Mage::helper('testimonials')->__('Facebook') ?></a>
                                 <?php endif ?>
-                                <?php if ($_testimonial->getTwitter() && 
+                                <?php if ($_testimonial->getTwitter() &&
                                           Mage::helper('testimonials')->isTwitterEnabled()): ?>
                                 , <a href="<?php echo $_testimonial->getTwitter() ?>">
                                 <img src="<?php echo Mage::helper('testimonials')->getTwitterIcon() ?>" /><?php echo Mage::helper('testimonials')->__('Twitter') ?></a><?php endif ?>
@@ -77,8 +79,8 @@
         //]]>
         </script>
     <?php endif ?>
-    <?php 
+    <?php
         if (!$this->getIsAjax()):
-            echo $this->getChildHtml('testimonials.list.bottom'); 
-        endif 
+            echo $this->getChildHtml('testimonials.list.bottom');
+        endif
     ?>

@@ -44,6 +44,12 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
      */
     const XML_PLACEHOLDER_IMAGE           = 'testimonials/list/placeholder_image';
     /**
+     * Path to store config for show user email in list
+     *
+     * @var string
+     */
+    const XML_LIST_EMAIL           = 'testimonials/list/show_email';
+    /**
      * Path to store config for testimonials form layout
      *
      * @var string
@@ -227,6 +233,16 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     public function getPlaceholderImage($store = null)
     {
        return Mage::getStoreConfig(self::XML_PLACEHOLDER_IMAGE, $store);
+    }
+    /**
+     * Checks whether user mail should be displayed in testimonials list
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return boolean
+     */
+    public function showUserEmail($store = null)
+    {
+        return Mage::getStoreConfigFlag(self::XML_LIST_EMAIL, $store);
     }
     /**
     * Return facebook icon path

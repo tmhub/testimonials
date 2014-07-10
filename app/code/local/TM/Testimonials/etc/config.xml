@@ -135,6 +135,7 @@
                 <image_width>100</image_width>
                 <image_height>100</image_height>
                 <placeholder_image>empty.gif</placeholder_image>
+                <show_email>0</show_email>
             </list>
             <form>
                 <layout>two_columns_left</layout>
