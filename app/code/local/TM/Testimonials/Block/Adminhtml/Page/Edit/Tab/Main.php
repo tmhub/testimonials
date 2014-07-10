@@ -102,10 +102,10 @@ class TM_Testimonials_Block_Adminhtml_Page_Edit_Tab_Main
             'label'    => Mage::helper('testimonials')->__('Rating'),
             'title'    => Mage::helper('testimonials')->__('Rating'),
             'options'  => array('-1' => Mage::helper('testimonials')->__('No rating'),
-                                '1' => '1 ' . Mage::helper('testimonials')->__('star'), 
-                                '2' => '2 ' . Mage::helper('testimonials')->__('stars'), 
-                                '3' => '3 ' . Mage::helper('testimonials')->__('stars'), 
-                                '4' => '4 ' . Mage::helper('testimonials')->__('stars'), 
+                                '1' => '1 ' . Mage::helper('testimonials')->__('star'),
+                                '2' => '2 ' . Mage::helper('testimonials')->__('stars'),
+                                '3' => '3 ' . Mage::helper('testimonials')->__('stars'),
+                                '4' => '4 ' . Mage::helper('testimonials')->__('stars'),
                                 '5' => '5 ' . Mage::helper('testimonials')->__('stars')),
             'disabled' => $isElementDisabled
         ));
@@ -134,6 +134,15 @@ class TM_Testimonials_Block_Adminhtml_Page_Edit_Tab_Main
             'options'  => Mage::getModel('adminhtml/system_config_source_yesno')->toArray(),
             'disabled' => $isElementDisabled,
             'value'    => 1
+        ));
+
+        $fieldset->addField('date', 'date', array(
+            'name'     => 'date',
+            'label'    => Mage::helper('testimonials')->__('Created date'),
+            'title'    => Mage::helper('testimonials')->__('Created date'),
+            'image' => $this->getSkinUrl('images/grid-cal.gif'),
+            'format' => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT),
+            'disabled' => $isElementDisabled
         ));
 
         $form->addValues($model->getData());
