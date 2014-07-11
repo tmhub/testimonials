@@ -1,15 +1,19 @@
 <?xml version="1.0"?>
 <widgets>
     <testimonials_list type="testimonials/widget_list" translate="name" module="testimonials">
-        <name>Testimonials: List of testimonials</name>
-        <description type="desc">Shows testiminial</description>
+        <name>Testimonials: List of testimonials (for side panel)</name>
+        <description type="desc">Shows changing testimonials list in side panel</description>
     </testimonials_list>
     <testimonials_review type="testimonials/widget_review" translate="name" module="testimonials">
-        <name>Testimonials: Review block</name>
-        <description type="desc">Shows number of testimonials and average testimonial rating</description>
+        <name>Testimonials: Review block (for side panel)</name>
+        <description type="desc">Shows number of testimonials and average testimonial rating in side panel</description>
     </testimonials_review>
     <testimonials_form type="testimonials/widget_form" translate="name" module="testimonials">
         <name>Testimonials: Submit Form</name>
         <description type="desc">Shows testimonials submit form</description>
     </testimonials_form>
+    <testimonials_listFull type="testimonials/widget_listFull" translate="name" module="testimonials">
+        <name>Testimonials: Full testimonials list</name>
+        <description type="desc">Shows full testimonials list</description>
+    </testimonials_listFull>
 </widgets>

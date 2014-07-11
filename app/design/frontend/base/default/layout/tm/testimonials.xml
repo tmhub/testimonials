@@ -3,6 +3,7 @@
     <default>
         <reference name="head">
             <action method="addItem"><type>skin_css</type><name>css/tm/testimonials.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/tm/testimonials.js</name></action>
         </reference>
     </default>
     <tm_testimonials_index_new>
@@ -40,9 +41,6 @@
                        template="tm/testimonials/list/bottom.phtml">
                 </block>
             </block>
-        </reference>
-        <reference name="head">
-            <action method="addItem"><type>skin_js</type><name>js/tm/testimonials.js</name></action>
         </reference>
     </tm_testimonials_index_index>
 </layout>
