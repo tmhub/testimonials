@@ -86,7 +86,7 @@
         <p class="required"><?php echo $this->__('* Required Fields') ?></p>
         <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
         <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
-        <button class="button" onclick="setLocation('/testimonials/'); return false;">
+        <button class="button" onclick="setLocation('<?php echo $this->getUrl('testimonials'); ?>'); return false;">
             <span><span>Back</span></span>
         </button>
     </div>
