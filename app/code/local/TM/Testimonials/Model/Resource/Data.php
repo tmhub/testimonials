@@ -15,7 +15,7 @@ class TM_Testimonials_Model_Resource_Data extends Mage_Core_Model_Mysql4_Abstrac
      */
     protected function _beforeSave(Mage_Core_Model_Abstract $object)
     {
-        if (! $object->getId()) {
+        if (!$object->getId() && !$object->getDate()) {
             $object->setDate(Mage::getSingleton('core/date')->gmtDate());
         }
         return $this;
@@ -98,7 +98,7 @@ class TM_Testimonials_Model_Resource_Data extends Mage_Core_Model_Mysql4_Abstrac
                 ->order('store.store_id DESC')
                 ->limit(1);
         }
-        
+
         return $select;
     }
 
