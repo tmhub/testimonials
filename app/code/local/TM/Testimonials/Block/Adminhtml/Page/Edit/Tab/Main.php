@@ -141,7 +141,7 @@ class TM_Testimonials_Block_Adminhtml_Page_Edit_Tab_Main
             'label'    => Mage::helper('testimonials')->__('Created date'),
             'title'    => Mage::helper('testimonials')->__('Created date'),
             'image' => $this->getSkinUrl('images/grid-cal.gif'),
-            'format' => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT),
+            'format' => 'MM/dd/yyyy',
             'disabled' => $isElementDisabled
         ));
 
