@@ -15,5 +15,15 @@
     <testimonials_listFull type="testimonials/widget_listFull" translate="name" module="testimonials">
         <name>Testimonials: Full testimonials list</name>
         <description type="desc">Shows full testimonials list</description>
+        <parameters>
+            <show_title translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Show list title</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>1</value>
+            </show_title>
+        </parameters>
     </testimonials_listFull>
 </widgets>

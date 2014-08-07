@@ -47,6 +47,7 @@ class TM_Testimonials_Block_Widget_ListFull extends TM_Testimonials_Block_List_C
         $titleBlock = $this->getLayout()
             ->createBlock('testimonials/list_title')
             ->setTemplate('tm/testimonials/list/title.phtml')
+            ->setShowTitle($this->getShowTitle())
             ->toHtml();
 
         $bottomBlock = $this->getLayout()
@@ -55,5 +56,10 @@ class TM_Testimonials_Block_Widget_ListFull extends TM_Testimonials_Block_List_C
             ->toHtml();
 
         return $titleBlock . $html . $bottomBlock;
+    }
+
+    public function getShowTitle()
+    {
+        return (bool) $this->_getData('show_title');
     }
 }

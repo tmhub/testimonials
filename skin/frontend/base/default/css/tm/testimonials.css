@@ -5,6 +5,10 @@
     position: relative;
 }
 
+.testimonials-list .testimonials {
+    margin: 0 10px 0 10px;
+}
+
 .testimonials-list .testimonial:first-child {
     margin-top: 0px;
 }
