@@ -1,5 +1,5 @@
 <?php $testimonials = $this->getTestimonials(); ?>
-<div id="testimonialsList" class="block block-testimonials">
+<div id="testimonialsList" class="block block-testimonials <?php if (!$this->getShowBlockDesign()): ?>empty-design<?php endif ?>">
     <div class="block-title">
         <strong><span><?php echo $this->__('Testimonials') ?></span></strong>
     </div>

@@ -3,10 +3,32 @@
     <testimonials_list type="testimonials/widget_list" translate="name" module="testimonials">
         <name>Testimonials: List of testimonials (for side panel)</name>
         <description type="desc">Shows changing testimonials list in side panel</description>
+        <parameters>
+            <show_block_design translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Display block title and link</label>
+                <description>Disable if you want to use your own title design or link</description>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>1</value>
+            </show_block_design>
+        </parameters>
     </testimonials_list>
     <testimonials_review type="testimonials/widget_review" translate="name" module="testimonials">
         <name>Testimonials: Review block (for side panel)</name>
         <description type="desc">Shows number of testimonials and average testimonial rating in side panel</description>
+        <parameters>
+            <show_block_design translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Display block title and link</label>
+                <description>Disable if you want to use your own title design or link</description>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>1</value>
+            </show_block_design>
+        </parameters>
     </testimonials_review>
     <testimonials_form type="testimonials/widget_form" translate="name" module="testimonials">
         <name>Testimonials: Submit Form</name>

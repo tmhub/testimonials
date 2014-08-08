@@ -33,7 +33,7 @@ class TM_Testimonials_Block_Widget_Review extends Mage_Core_Block_Template
         );
     }
 
-    public function getTemplate() 
+    public function getTemplate()
     {
         $template = parent::getTemplate();
         if (!$template) {
@@ -66,5 +66,10 @@ class TM_Testimonials_Block_Widget_Review extends Mage_Core_Block_Template
             return parent::_toHtml();
         }
         return '';
+    }
+
+    public function getShowBlockDesign()
+    {
+        return (bool) $this->_getData('show_block_design');
     }
 }

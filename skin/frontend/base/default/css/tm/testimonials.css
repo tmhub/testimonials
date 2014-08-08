@@ -228,6 +228,21 @@
     font-style: italic;
 }
 
+.block-testimonials.empty-design .actions,
+.block-testimonials.empty-design .block-title {
+    display: none;
+}
+
+.block-testimonials.empty-design,
+.block-testimonials.empty-design .block-content {
+    background: none;
+    border: none;
+}
+
+.block-testimonials.empty-design .block-content .content {
+    padding: 0;
+}
+
 .std .testimonialForm li {
     list-style: none;
 }
