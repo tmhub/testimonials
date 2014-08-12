@@ -60,8 +60,8 @@ class TM_Testimonials_Model_Observer
         $storeId = Mage::app()->getStore()->getId();
         $image = $emailData['image'] ? Mage::helper('testimonials')->__("Yes") :
             Mage::helper('testimonials')->__("No");
-        $status = Mage::getModel('tm_testimonials/data')
-            ->getAvailableStatuses()[$emailData['status']];
+        $statuses = Mage::getModel('tm_testimonials/data')->getAvailableStatuses();
+        $status = $statuses[$emailData['status']];
         $vars = array(
             'admin_subject' => $subject,
             'user_name' => $emailData['name'],
