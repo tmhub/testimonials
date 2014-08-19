@@ -1,0 +1,11 @@
+{
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tmhub/testimonials.git"
+    },
+    "dependencies": {
+        "gulp": "*",
+        "gulp-filesize": "*",
+        "gulp-zip": "*"
+    }
+}
