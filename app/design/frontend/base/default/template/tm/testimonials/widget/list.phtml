@@ -73,6 +73,10 @@
     }
 
     function nextTestimonial() {
+        if (numTestimonials < 2) {
+            return;
+        }
+
         $('testimonial_' + curTestimonial).down('.read-more').stopObserving();
         $('testimonial_' + curTestimonial).down('.read-less').stopObserving();
         Effect.Fade('testimonial_' + curTestimonial, {
