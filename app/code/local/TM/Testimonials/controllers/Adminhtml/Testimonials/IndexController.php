@@ -109,6 +109,10 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
             }
 
             $model->addData($data);
+
+            $date = Mage::app()->getLocale()->date($data['date'], Zend_Date::DATE_SHORT, null, false);
+            $model->setDate($date->toString('YYYY-MM-dd HH:mm:ss'));
+
             $model->save();
 
             Mage::getSingleton('adminhtml/session')->addSuccess(
