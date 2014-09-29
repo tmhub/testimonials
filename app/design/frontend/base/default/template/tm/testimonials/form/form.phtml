@@ -75,7 +75,8 @@
                         ->getTemplate() != "page/3columns.phtml"): ?>class="wide"<?php endif ?>>
                 <label for="message" class="required"><em>*</em><?php echo $this->__('Message') ?></label>
                 <div class="input-box">
-                    <textarea name="message" id="message" title="<?php echo $this->__('Message') ?>"
+                    <textarea name="message" id="message"
+                        title="<?php echo $this->__('Message') ?>"
                         class="required-entry input-text" cols="5" rows="3"><?php echo $this->getUserMessage(); ?></textarea>
                 </div>
             </li>
@@ -87,7 +88,7 @@
         <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
         <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
         <button class="button" onclick="setLocation('<?php echo $this->getUrl('testimonials'); ?>'); return false;">
-            <span><span>Back</span></span>
+            <span><span><?php echo $this->__('Back') ?></span></span>
         </button>
     </div>
 </form>
