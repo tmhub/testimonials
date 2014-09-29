@@ -61,17 +61,17 @@ class TM_Testimonials_Model_Observer
         $image = $emailData['image'] ? Mage::helper('testimonials')->__("Yes") :
             Mage::helper('testimonials')->__("No");
         $statuses = Mage::getModel('tm_testimonials/data')->getAvailableStatuses();
-        $status = $statuses[$emailData['status']];
+        $status = $statuses[isset($emailData['status']) ? $emailData['status'] : 0];
         $vars = array(
             'admin_subject' => $subject,
             'user_name' => $emailData['name'],
             'user_email' => $emailData['email'],
             'message' => $emailData['message'],
-            'company' => $emailData['company'],
-            'website' => $emailData['website'],
-            'facebook' => $emailData['facebook'],
-            'twitter' => $emailData['twitter'],
-            'rating' => $emailData['rating'],
+            'company' => isset($emailData['company']) ? $emailData['company'] : '',
+            'website' => isset($emailData['website']) ? $emailData['website'] : '',
+            'facebook' => isset($emailData['facebook']) ? $emailData['facebook'] : '',
+            'twitter' => isset($emailData['twitter']) ? $emailData['twitter'] : '',
+            'rating' => isset($emailData['rating']) ? : -1,
             'image' =>  $image,
             'status' => $status,
             'store_view' => Mage::app()->getStore()->getFrontendName()

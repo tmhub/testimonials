@@ -66,10 +66,10 @@
                 $model->setName($data['name']);
                 $model->setEmail($data['email']);
                 $model->setMessage($data['message']);
-                $model->setCompany($data['company']);
-                $model->setWebsite($data['website']);
-                $model->setTwitter($data['twitter']);
-                $model->setFacebook($data['facebook']);
+                $model->setCompany(isset($data['company']) ? $data['company'] : '');
+                $model->setWebsite(isset($data['website']) ? $data['website'] : '');
+                $model->setTwitter(isset($data['twitter']) ? $data['twitter'] : '');
+                $model->setFacebook(isset($data['facebook']) ? $data['facebook'] : '');
                 if (isset($data['rating'])) $model->setRating($data['rating']);
                 if (Mage::helper('testimonials')->isAutoApprove())
                     $model->setStatus(TM_Testimonials_Model_Data::STATUS_ENABLED);
