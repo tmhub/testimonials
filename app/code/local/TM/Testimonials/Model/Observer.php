@@ -61,7 +61,7 @@ class TM_Testimonials_Model_Observer
         $image = $emailData['image'] ? Mage::helper('testimonials')->__("Yes") :
             Mage::helper('testimonials')->__("No");
         $statuses = Mage::getModel('tm_testimonials/data')->getAvailableStatuses();
-        $status = $statuses[isset($emailData['status']) ? $emailData['status'] : 0];
+        $status = $statuses[isset($emailData['status']) ? $emailData['status'] : TM_Testimonials_Model_Data::STATUS_AWAITING_APPROVAL];
         $vars = array(
             'admin_subject' => $subject,
             'user_name' => $emailData['name'],
