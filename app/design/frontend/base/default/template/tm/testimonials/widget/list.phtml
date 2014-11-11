@@ -1,4 +1,10 @@
-<?php $testimonials = $this->getTestimonials(); ?>
+<?php
+$testimonials = $this->getTestimonials();
+if (!count($testimonials)) {
+    return;
+}
+?>
+
 <div id="testimonialsList" class="block block-testimonials <?php if (!$this->getShowBlockDesign()): ?>empty-design<?php endif ?>">
     <div class="block-title">
         <strong><span><?php echo $this->__('Testimonials') ?></span></strong>

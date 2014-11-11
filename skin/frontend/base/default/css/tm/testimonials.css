@@ -156,19 +156,6 @@
 }
 
 /** widgets styles */
-.block-testimonials .block-title strong {
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    padding-left: 21px;
-    background-image: url(/skin/frontend/default/default/images/i_block-poll.gif);
-}
-
-.block-testimonials .actions {
-    text-align: right;
-    background: #dee5e8 url(/skin/frontend/default/default/images/bkg_block-actions.gif) 0 0 repeat-x;
-    padding: 6px 9px;
-}
-
 .block-testimonials .actions a {
     float: none;
 }
