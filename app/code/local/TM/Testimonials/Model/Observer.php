@@ -71,7 +71,7 @@ class TM_Testimonials_Model_Observer
             'website' => isset($emailData['website']) ? $emailData['website'] : '',
             'facebook' => isset($emailData['facebook']) ? $emailData['facebook'] : '',
             'twitter' => isset($emailData['twitter']) ? $emailData['twitter'] : '',
-            'rating' => isset($emailData['rating']) ? : -1,
+            'rating' => isset($emailData['rating']) ? $emailData['rating'] : -1,
             'image' =>  $image,
             'status' => $status,
             'store_view' => Mage::app()->getStore()->getFrontendName()
