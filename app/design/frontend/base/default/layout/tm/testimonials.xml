@@ -5,6 +5,26 @@
             <action method="addItem"><type>skin_css</type><name>css/tm/testimonials.css</name></action>
             <action method="addItem"><type>skin_js</type><name>js/tm/testimonials.js</name></action>
         </reference>
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="testimonials" ifconfig="testimonials/general/top_links">
+                <label>Testimonials</label>
+                <url>/testimonials</url>
+                <title>Testimonials</title>
+                <prepare/>
+                <urlParams/>
+                <position>200</position>
+            </action>
+        </reference>
+        <reference name="footer_links">
+            <action method="addLink" translate="label title" module="testimonials" ifconfig="testimonials/general/footer_links">
+                <label>Testimonials</label>
+                <url>/testimonials</url>
+                <title>Testimonials</title>
+                <prepare/>
+                <urlParams/>
+                <position>200</position>
+            </action>
+        </reference>
     </default>
     <tm_testimonials_index_new>
         <reference name="content">
