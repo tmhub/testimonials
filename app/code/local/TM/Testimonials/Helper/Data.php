@@ -86,24 +86,6 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
      */
     const XML_SENT_MESSAGE                = 'testimonials/form/sent_message';
     /**
-     * Path to store config number of items in widget
-     *
-     * @var string
-     */
-    const XML_NUM_IN_WIDGET                = 'testimonials/widget/items_number';
-    /**
-     * Path to store config testimonial view time
-     *
-     * @var string
-     */
-    const XML_VIEW_TIME_WIDGET                = 'testimonials/widget/view_time';
-    /**
-     * Path to store config change animation duration
-     *
-     * @var string
-     */
-    const XML_ANIM_DURATION_WIDGET                = 'testimonials/widget/anim_duration';
-    /**
      * Path to store config admin email notification enable
      *
      * @var string
@@ -285,36 +267,6 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     public function isAutoApprove($store = null)
     {
         return Mage::getStoreConfigFlag(self::XML_PATH_APPROVE, $store);
-    }
-    /**
-     * Return the number of items in widget
-     *
-     * @param integer|string|Mage_Core_Model_Store $store
-     * @return int
-     */
-    public function getItemsNumInWidget($store = null)
-    {
-        return abs((int)Mage::getStoreConfig(self::XML_NUM_IN_WIDGET, $store));
-    }
-    /**
-     * Return testimonial view time in widget
-     *
-     * @param integer|string|Mage_Core_Model_Store $store
-     * @return int
-     */
-    public function getViewTimeInWidget($store = null)
-    {
-        return abs((int)Mage::getStoreConfig(self::XML_VIEW_TIME_WIDGET, $store));
-    }
-    /**
-     * Return change animation duration
-     *
-     * @param integer|string|Mage_Core_Model_Store $store
-     * @return int
-     */
-    public function getChangeAnimDurationInWidget($store = null)
-    {
-        return abs((int)Mage::getStoreConfig(self::XML_ANIM_DURATION_WIDGET, $store));
     }
     /**
      * Checks if send email for admin enabled

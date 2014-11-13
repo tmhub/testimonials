@@ -187,39 +187,6 @@
                         </sent_message>
                     </fields>
                 </form>
-                <widget translate="label" module="testimonials">
-                    <label>Widget options</label>
-                    <sort_order>630</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
-                    <fields>
-                        <items_number translate="label">
-                            <label>Number of Testimonials in widget</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </items_number>
-                        <view_time translate="label">
-                            <label>Show next testimonial after, ms</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </view_time>
-                        <anim_duration translate="label">
-                            <label>Change animation duration, ms</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>30</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </anim_duration>
-                    </fields>
-                </widget>
                 <email_admin translate="label" module="testimonials">
                     <label>Administrator Email Notifications</label>
                     <sort_order>640</sort_order>

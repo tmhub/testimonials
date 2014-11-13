@@ -67,9 +67,4 @@ class TM_Testimonials_Block_Widget_Review extends Mage_Core_Block_Template
         }
         return '';
     }
-
-    public function getShowBlockDesign()
-    {
-        return (bool) $this->_getData('show_block_design');
-    }
 }

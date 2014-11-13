@@ -147,11 +147,6 @@
                 <enable_facebook>0</enable_facebook>
                 <sent_message>Thank you for your testimonial</sent_message>
             </form>
-            <widget>
-                <items_number>5</items_number>
-                <view_time>10000</view_time>
-                <anim_duration>1000</anim_duration>
-            </widget>
             <email_admin>
                 <send_enable>0</send_enable>
                 <send_from>0</send_from>

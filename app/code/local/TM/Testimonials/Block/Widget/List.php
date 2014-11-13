@@ -52,7 +52,7 @@ class TM_Testimonials_Block_Widget_List extends Mage_Core_Block_Template
 
         $testimonials->getSelect()
                     ->order(new Zend_Db_Expr('RAND()'))
-                    ->limit(Mage::helper('testimonials')->getItemsNumInWidget());
+                    ->limit($this->getItemsNumber());
 
         $this->setTestimonials($testimonials);
         return parent::_beforeToHtml();
@@ -64,10 +64,5 @@ class TM_Testimonials_Block_Widget_List extends Mage_Core_Block_Template
             return parent::_toHtml();
         }
         return '';
-    }
-
-    public function getShowBlockDesign()
-    {
-        return (bool) $this->_getData('show_block_design');
     }
 }

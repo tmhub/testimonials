@@ -13,6 +13,27 @@
                 <source_model>adminhtml/system_config_source_yesno</source_model>
                 <value>1</value>
             </show_block_design>
+            <items_number translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Number of testimonials</label>
+                <type>text</type>
+                <value>5</value>
+            </items_number>
+            <view_time translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Show next testimonial after, ms</label>
+                <type>text</type>
+                <value>10000</value>
+            </view_time>
+            <anim_duration translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Change animation duration, ms</label>
+                <type>text</type>
+                <value>1000</value>
+            </anim_duration>
         </parameters>
     </testimonials_list>
     <testimonials_review type="testimonials/widget_review" translate="name" module="testimonials">

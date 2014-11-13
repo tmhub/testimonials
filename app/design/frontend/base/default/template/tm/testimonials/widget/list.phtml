@@ -41,9 +41,8 @@ if (!count($testimonials)) {
         changeInterval,
         contentHeight = $$('.block-testimonials .block-content .content .content-wrapper')[0].getStyle('height'),
         numTestimonials = <?php echo count($testimonials); ?>,
-        viewTime = <?php echo Mage::helper('testimonials')->getViewTimeInWidget(); ?>,
-        changeAnimDuration = <?php echo Mage::helper('testimonials')
-                                    ->getChangeAnimDurationInWidget(); ?>;
+        viewTime = <?php echo $this->getViewTime(); ?>,
+        changeAnimDuration = <?php echo $this->getAnimDuration(); ?>;
 
     startChangeTimer();
 
