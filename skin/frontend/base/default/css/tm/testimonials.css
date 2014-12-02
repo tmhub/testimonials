@@ -58,6 +58,17 @@
 
 .testimonials-list .page-title h1 {
     float: left;
+    border-bottom: none;
+}
+
+.testimonials-list .page-title:after {
+    display: block;
+    content: ".";
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+    height: 0;
+    overflow: hidden;
 }
 
 .testimonials-list .testimonial-image {
@@ -137,6 +148,7 @@
 .testimonials-list .testimonial .socialInfo img {
     margin-right: 5px;
     margin-left: 5px;
+    display: inline;
 }
 
 .testimonials-list .testimonial .rating-title {
