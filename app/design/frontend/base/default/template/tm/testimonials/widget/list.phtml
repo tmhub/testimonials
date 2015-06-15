@@ -52,8 +52,10 @@ if (!count($testimonials)) {
 
     Event.observe('testimonialsList', 'mouseleave', startChangeTimer);
 
-    Event.observe($('testimonial_0').down('.read-more'), 'click', showMore);
-    Event.observe($('testimonial_0').down('.read-less'), 'click', showLess);
+    if ($('testimonial_0').down('.read-more')) {
+        Event.observe($('testimonial_0').down('.read-more'), 'click', showMore);
+        Event.observe($('testimonial_0').down('.read-less'), 'click', showLess);
+    }
 
     function showMore(e) {
         e.stop();
@@ -81,9 +83,10 @@ if (!count($testimonials)) {
         if (numTestimonials < 2) {
             return;
         }
-
-        $('testimonial_' + curTestimonial).down('.read-more').stopObserving();
-        $('testimonial_' + curTestimonial).down('.read-less').stopObserving();
+        if ($('testimonial_0').down('.read-more')) {
+            $('testimonial_' + curTestimonial).down('.read-more').stopObserving();
+            $('testimonial_' + curTestimonial).down('.read-less').stopObserving();
+        }
         Effect.Fade('testimonial_' + curTestimonial, {
             duration: changeAnimDuration / 1000
         });
@@ -95,10 +98,12 @@ if (!count($testimonials)) {
             Effect.Appear('testimonial_' + curTestimonial, {
                 duration: changeAnimDuration / 1000
             });
-            Event.observe($('testimonial_' + curTestimonial).down('.read-more'),
-                'click', showMore);
-            Event.observe($('testimonial_' + curTestimonial).down('.read-less'),
-                'click', showLess);
+            if ($('testimonial_0').down('.read-more')) {
+                Event.observe($('testimonial_' + curTestimonial).down('.read-more'),
+                    'click', showMore);
+                Event.observe($('testimonial_' + curTestimonial).down('.read-less'),
+                    'click', showLess);
+            }
         }, changeAnimDuration);
     }
 //]]>
