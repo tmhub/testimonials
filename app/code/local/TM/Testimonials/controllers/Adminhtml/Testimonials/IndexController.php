@@ -234,7 +234,8 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
      */
     protected function _isAllowed()
     {
-        switch ($this->getRequest()->getActionName()) {
+        $action = strtolower($this->getRequest()->getActionName());
+        switch ($action) {
             case 'new':
             case 'save':
                 return Mage::getSingleton('admin/session')->isAllowed('templates_master/testimonials/testimonials/save');
