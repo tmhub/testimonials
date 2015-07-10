@@ -40,7 +40,7 @@
                         <children>
                             <testimonials translate="title" module="testimonials">
                                 <title>Testimonials</title>
-                                <sort_order>20</sort_order>
+                                <sort_order>2021</sort_order>
                                 <children>
                                     <testimonials>
                                         <title>Manage Testimonials</title>
