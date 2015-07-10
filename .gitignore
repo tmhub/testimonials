@@ -1,1 +1,6 @@
 media/testimonials/pictures/*
+build/*
+!build/composer.json
+!build/gulpfile.js
+!build/package.json
+!build/README.md
