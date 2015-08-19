@@ -10,7 +10,7 @@
                 <label>Testimonials</label>
                 <url>testimonials</url>
                 <title>Testimonials</title>
-                <prepare/>
+                <prepare>true</prepare>
                 <urlParams/>
                 <position>200</position>
             </action>
@@ -20,7 +20,7 @@
                 <label>Testimonials</label>
                 <url>testimonials</url>
                 <title>Testimonials</title>
-                <prepare/>
+                <prepare>true</prepare>
                 <urlParams/>
                 <position>200</position>
             </action>
