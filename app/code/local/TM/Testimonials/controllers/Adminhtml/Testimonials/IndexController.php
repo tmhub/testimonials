@@ -115,6 +115,9 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
 
             $model->save();
 
+            // clear testimonials list block cache after new item was added
+            Mage::app()->cleanCache(array('tm_testimonials_list'));
+
             Mage::getSingleton('adminhtml/session')->addSuccess(
                 Mage::helper('testimonials')->__('Testimonial has been saved.')
             );

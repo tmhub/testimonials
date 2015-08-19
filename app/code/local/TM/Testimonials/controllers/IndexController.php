@@ -113,6 +113,8 @@
                             $e->getMessage()
                         );
                     }
+                    // clear testimonials list block cache after new item was added
+                    Mage::app()->cleanCache(array('tm_testimonials_list'));
                 } catch (Exception $e) {
                     Mage::getSingleton('customer/session')->addError($e->getMessage());
                     Mage::getSingleton('customer/session')->setTestimonialsFormData($data);

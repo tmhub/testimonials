@@ -12,7 +12,7 @@ class TM_Testimonials_Block_List_Content extends Mage_Core_Block_Template
 
         $this->addData(array(
             'cache_lifetime' => false,
-            'cache_tags'     => array(Mage_Core_Model_Store::CACHE_TAG, Mage_Cms_Model_Block::CACHE_TAG)
+            'cache_tags'     => array(Mage_Core_Model_Store::CACHE_TAG, Mage_Cms_Model_Block::CACHE_TAG, 'tm_testimonials_list')
         ));
     }
 
@@ -44,7 +44,7 @@ class TM_Testimonials_Block_List_Content extends Mage_Core_Block_Template
             ->setOrder('date', 'desc')
             ->setPageSize($this->getPerPage())
             ->setCurPage($this->getCurrentPage());
-        
+
         $this->setTestimonials($testimonials);
         $this->_placeholderImage = Mage::helper('testimonials')->getPlaceholderImage();
         return parent::_beforeToHtml();
@@ -65,7 +65,7 @@ class TM_Testimonials_Block_List_Content extends Mage_Core_Block_Template
                 ($testimonial->getTwitter() && Mage::helper('testimonials')->isTwitterEnabled()));
     }
 
-    public function getImagePath($testimonial) 
+    public function getImagePath($testimonial)
     {
         $image = $testimonial->getImage();
         if (!$image && $this->_placeholderImage) {
