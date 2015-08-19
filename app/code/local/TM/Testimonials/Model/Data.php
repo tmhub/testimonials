@@ -10,6 +10,9 @@ class TM_Testimonials_Model_Data extends Mage_Core_Model_Abstract
 
     const IMAGE_PATH = '/testimonials/pictures/';
 
+    const CACHE_TAG = 'testimonials_data';
+    protected $_cacheTag = self::CACHE_TAG;
+
     public function __construct()
     {
         $this->_init('tm_testimonials/data');
@@ -28,9 +31,20 @@ class TM_Testimonials_Model_Data extends Mage_Core_Model_Abstract
             self::STATUS_ENABLED => Mage::helper('cms')->__('Enabled'),
             self::STATUS_DISABLED => Mage::helper('cms')->__('Disabled')
         ));
-        
+
         Mage::dispatchEvent('testimonials_data_get_available_statuses', array('statuses' => $statuses));
 
         return $statuses->getData();
+    }
+    /**
+     * Get cache tags associated with object id
+     *
+     * @return array
+     */
+    public function getCacheIdTags()
+    {
+        $tags   = parent::getCacheIdTags();
+        $tags[] = 'TM_TESTIMONIAL_' . $this->getTestimonialId();
+        return $tags;
     }
 }
