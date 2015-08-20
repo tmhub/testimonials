@@ -255,4 +255,51 @@
         margin-bottom: 10px;
         clear: both;
     }
+
+    .testimonials-list .testimonial-image {
+        float: none;
+        text-align: center;
+        width: 100% !important;
+    }
+
+    .testimonials-list .container {
+        margin-left: 0 !important;
+        margin-top: 20px;
+    }
+
+    .testimonials-list .testimonial .message {
+        margin: 0;
+    }
+
+    .testimonials-list .testimonial .message:before {
+        content: "";
+        position: absolute;
+        top: -23px;
+        bottom: auto;
+        left: 47%;
+        border-width: 0 10px 23px 10px;
+        border-style: solid;
+        border-color: transparent transparent #CFCFCF transparent;
+        display: block;
+        width: 0;
+        height: 0;
+    }
+
+    .testimonials-list .testimonial .message:after {
+        content: "";
+        position: absolute;
+        top: -21px;
+        bottom: auto;
+        left: 47%;
+        border-width: 0 9px 23px 10px;
+        border-style: solid;
+        border-color: transparent transparent #fff transparent;
+        display: block;
+        width: 0;
+        height: 0;
+    }
+
+    .testimonials-list .testimonial:first-child {
+        margin-top: 40px;
+    }
 }
