@@ -1,6 +1,6 @@
 <?php
-	class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
-	{
+class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
+{
         /**
          * Pre dispatch action that allows to redirect to no route page in case
          * of disabled extension through Admin panel
@@ -15,8 +15,8 @@
             }
         }
 
-		public function indexAction()
-		{
+	public function indexAction()
+	{
             $layout = $this->loadLayout()->getLayout();
             $isAjax = Mage::app()->getRequest()->isAjax();
             if ($isAjax) {
@@ -38,7 +38,7 @@
                      ->applyTemplate(Mage::helper('testimonials')->getListLayout());
                 $this->renderLayout();
             }
-		}
+	}
 
         public function newAction()
         {
@@ -124,4 +124,4 @@
             }
             $this->_redirectReferer();
         }
-	}
+}
