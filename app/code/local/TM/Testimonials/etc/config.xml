@@ -108,6 +108,11 @@
         </events>
     </frontend>
     <default>
+        <subscriptionchecker>
+            <ignored_sections>
+                <testimonials/>
+            </ignored_sections>
+        </subscriptionchecker>
         <captcha>
             <frontend>
                 <areas>
