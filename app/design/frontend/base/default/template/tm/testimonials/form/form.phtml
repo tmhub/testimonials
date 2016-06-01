@@ -62,12 +62,13 @@
                 </div>
                 <div class="field">
                     <label><?php echo $this->__('Rating') ?></label>
-                    <div class="input-box">
+                    <div class="input-box ratings-table">
                     <?php for ($i = 1; $i <= 5; ++$i) { ?>
                         <label for="rating_<?php echo $i; ?>"><?php echo $i; ?>
                             <input type="radio" name="rating" id="rating_<?php echo $i; ?>" value="<?php echo $i; ?>" class="radio" <?php if ($this->checkRating($i)): ?>checked="checked"<?php endif; ?> />
                         </label>
                     <?php } ?>
+                        <div id="testimonial-form-rating-box" style="display: none;" class="rating-box"><div id="testimonial-form-rating" class="rating"></div></div>
                     </div>
                 </div>
             </li>

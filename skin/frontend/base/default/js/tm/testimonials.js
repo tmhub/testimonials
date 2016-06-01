@@ -20,3 +20,20 @@ Testimonials.prototype = {
         });
     }
 };
+
+document.observe('dom:loaded', function() {
+    // hide radiobuttons
+    $$('.testimonialForm .ratings-table label').each(function (el){
+       el.setStyle({'display': 'none'});
+    });
+    // show stars instead of radiobuttons
+    $('testimonial-form-rating-box').setStyle({'display': ''});
+    // listen star click on testimonial form
+    $('testimonial-form-rating-box').observe('click', function(e) {
+        var xPositionInDiv = e.pointerX() - this.cumulativeOffset().left;
+        var singleStarWidth = this.getWidth() / 5;
+        var stars = Math.floor( xPositionInDiv / singleStarWidth ) + 1;
+        $('rating_' + stars).checked = 'checked';
+        $('testimonial-form-rating').setStyle({'width' : (stars * 20) + '%'});
+    });
+});
