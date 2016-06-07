@@ -32,7 +32,7 @@
                        template="tm/testimonials/form/container.phtml">
             	<block type="testimonials/form_form" name="testimonials.form"
             		   template="tm/testimonials/form/form.phtml" as="testimonials_form">
-                    <block type="captcha/captcha" name="captcha">
+                    <block type="captcha/captcha" name="testimonials.captcha">
                         <reference name="head">
                             <action method="addJs"><file>mage/captcha.js</file></action>
                         </reference>
