@@ -22,14 +22,19 @@ Testimonials.prototype = {
 };
 
 document.observe('dom:loaded', function() {
+    // check if testimonials form rating box exist
+    var testimonialRatingBox = $('testimonial-form-rating-box');
+    if (testimonialRatingBox == undefined) {
+        return;
+    }
     // hide radiobuttons
     $$('.testimonialForm .ratings-table label').each(function (el){
        el.setStyle({'display': 'none'});
     });
     // show stars instead of radiobuttons
-    $('testimonial-form-rating-box').setStyle({'display': ''});
+    testimonialRatingBox.setStyle({'display': ''});
     // listen star click on testimonial form
-    $('testimonial-form-rating-box').observe('click', function(e) {
+    testimonialRatingBox.observe('click', function(e) {
         var xPositionInDiv = e.pointerX() - this.cumulativeOffset().left;
         var singleStarWidth = this.getWidth() / 5;
         var stars = Math.floor( xPositionInDiv / singleStarWidth ) + 1;
