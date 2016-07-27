@@ -20,25 +20,35 @@ Testimonials.prototype = {
         });
     }
 };
+var TestimonialForm = Class.create(VarienForm, {
+    initStars: function(){
+        if (!this.form) {
+            console.log('no form');
+            return
+        }
+        // check if testimonials form rating box exist
+        var testimonialRatingBox = $('testimonial-form-rating-box');
+        if (testimonialRatingBox == undefined) {
+            return;
+        }
+        // hide radiobuttons
+        $$('.testimonialForm .ratings-table label').each(function (el){
+           el.setStyle({'display': 'none'});
+        });
+        // show stars instead of radiobuttons
+        testimonialRatingBox.setStyle({'display': ''});
+        // listen star click on testimonial form
+        testimonialRatingBox.observe('click', function(e) {
+            var xPositionInDiv = e.pointerX() - this.cumulativeOffset().left;
+            var singleStarWidth = this.getWidth() / 5;
+            var stars = Math.floor( xPositionInDiv / singleStarWidth ) + 1;
+            $('rating_' + stars).checked = 'checked';
+            $('testimonial-form-rating').setStyle({'width' : (stars * 20) + '%'});
+        });
+    }
+});
 
 document.observe('dom:loaded', function() {
-    // check if testimonials form rating box exist
-    var testimonialRatingBox = $('testimonial-form-rating-box');
-    if (testimonialRatingBox == undefined) {
-        return;
-    }
-    // hide radiobuttons
-    $$('.testimonialForm .ratings-table label').each(function (el){
-       el.setStyle({'display': 'none'});
-    });
-    // show stars instead of radiobuttons
-    testimonialRatingBox.setStyle({'display': ''});
-    // listen star click on testimonial form
-    testimonialRatingBox.observe('click', function(e) {
-        var xPositionInDiv = e.pointerX() - this.cumulativeOffset().left;
-        var singleStarWidth = this.getWidth() / 5;
-        var stars = Math.floor( xPositionInDiv / singleStarWidth ) + 1;
-        $('rating_' + stars).checked = 'checked';
-        $('testimonial-form-rating').setStyle({'width' : (stars * 20) + '%'});
-    });
+    window.testimonialForm = new TestimonialForm('testimonialForm', true);
+    testimonialForm.initStars();
 });

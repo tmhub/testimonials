@@ -10,7 +10,7 @@ class TM_Testimonials_Helper_Image extends Mage_Core_Helper_Abstract
         $this->_image = $image;
         return $this;
     }
-    
+
     public function resize($width, $height)
     {
         if (!$imageUrl = $this->getImageUrl()) {
