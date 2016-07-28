@@ -20,35 +20,70 @@ Testimonials.prototype = {
         });
     }
 };
-var TestimonialForm = Class.create(VarienForm, {
-    initStars: function(){
-        if (!this.form) {
-            console.log('no form');
-            return
+
+(function (exports){
+
+    var widgetContentSelector = '.block-testimonials .content .content-wrapper',
+        curTestimonial = 0,
+        showMoreActive = false,
+        changeInterval,
+        contentHeight;
+
+    var WidgetList = Class.create();
+    WidgetList.prototype = {
+        initialize: function (element) {
+            if (!element) {
+                return;
+            }
+            self = this;
+            ['num-testimonials','view-time','anim-duration'].each(
+                function (v) {
+                    self[v.camelize()] = element.readAttribute('data-'+v);
+                });
         }
-        // check if testimonials form rating box exist
-        var testimonialRatingBox = $('testimonial-form-rating-box');
-        if (testimonialRatingBox == undefined) {
-            return;
-        }
-        // hide radiobuttons
-        $$('.testimonialForm .ratings-table label').each(function (el){
-           el.setStyle({'display': 'none'});
-        });
-        // show stars instead of radiobuttons
-        testimonialRatingBox.setStyle({'display': ''});
-        // listen star click on testimonial form
-        testimonialRatingBox.observe('click', function(e) {
-            var xPositionInDiv = e.pointerX() - this.cumulativeOffset().left;
-            var singleStarWidth = this.getWidth() / 5;
-            var stars = Math.floor( xPositionInDiv / singleStarWidth ) + 1;
-            $('rating_' + stars).checked = 'checked';
-            $('testimonial-form-rating').setStyle({'width' : (stars * 20) + '%'});
-        });
     }
-});
+
+    exports.testimonialWL = new WidgetList();
+
+})(this);
+
+(function (exports){
+
+    var TestimonialForm = Class.create(VarienForm, {
+
+        initRatingStars: function(){
+            var ratingRadiosSelector = '.testimonialForm .ratings-table label',
+                ratingBox = $('testimonial-form-rating-box');
+            // check if testimonials form rating box exist
+            if (!ratingBox) {
+                return;
+            }
+            // hide radiobuttons
+            $$(ratingRadiosSelector).each(function (el){
+               el.setStyle({'display': 'none'});
+            });
+            // show stars instead of radiobuttons
+            ratingBox.setStyle({'display': ''});
+            // listen star click on testimonial form
+            ratingBox.observe('click', function(event) {
+                var xPosInDiv = event.pointerX() - this.cumulativeOffset().left;
+                var starWidth = this.getWidth() / 5;
+                var n = Math.floor( xPosInDiv / starWidth ) + 1;
+                $('rating_' + n).checked = 'checked';
+                $('testimonial-form-rating').setStyle({'width' : (n*20) + '%'});
+            });
+        }
+
+    });
+
+    exports.testimonialForm = new TestimonialForm();
+
+})(this);
 
 document.observe('dom:loaded', function() {
-    window.testimonialForm = new TestimonialForm('testimonialForm', true);
-    testimonialForm.initStars();
+    testimonialForm.initialize('testimonialForm', true);
+    if (testimonialForm.form) {
+        testimonialForm.initRatingStars();
+    }
+    testimonialWL.initialize($('testimonialsList'));
 });

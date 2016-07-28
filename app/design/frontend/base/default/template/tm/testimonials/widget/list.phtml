@@ -5,7 +5,7 @@ if (!count($testimonials)) {
 }
 ?>
 
-<div id="testimonialsList" class="block block-testimonials <?php if (!$this->getShowBlockDesign()): ?>empty-design<?php endif ?>">
+<div id="testimonialsList" class="block block-testimonials <?php if (!$this->getShowBlockDesign()):?>empty-design<?php endif; ?>" data-num-testimonials="<?php echo count($testimonials);?>" data-view-time="<?php echo $this->getViewTime();?>" data-anim-duration="<?php echo $this->getAnimDuration(); ?>">
     <div class="block-title">
         <strong><span><?php echo $this->__('Testimonials') ?></span></strong>
     </div>
