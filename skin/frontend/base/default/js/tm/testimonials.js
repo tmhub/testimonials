@@ -24,10 +24,66 @@ Testimonials.prototype = {
 (function (exports){
 
     var widgetContentSelector = '.block-testimonials .content .content-wrapper',
+        config = {},
+        itemPrefix = 'testimonial_',
         curTestimonial = 0,
         showMoreActive = false,
-        changeInterval,
-        contentHeight;
+        contentHeight,
+        changeInterval;
+
+    function showMore(e) {
+        e.stop();
+        showMoreActive = true;
+        this.hide();
+        this.up().down('.read-less').show();
+        this.up().down('.content-wrapper').setStyle({height: 'auto'});
+    }
+
+    function showLess(e) {
+        e.stop();
+        showMoreActive = false;
+        this.hide();
+        this.up().down('.read-more').show();
+        this.up().down('.content-wrapper').setStyle({height: contentHeight});
+    }
+
+    function startChangeTimer() {
+        if (!showMoreActive) {
+            changeInterval = setInterval(
+                nextTestimonial,
+                config.viewTime
+            );
+        }
+    }
+
+    function nextTestimonial() {
+        if (config.numTestimonials < 2) {
+            return;
+        }
+        if ($(itemPrefix + '0').down('.read-more')) {
+            $(itemPrefix + curTestimonial).down('.read-more').stopObserving();
+            $(itemPrefix + curTestimonial).down('.read-less').stopObserving();
+        }
+        Effect.Fade(itemPrefix + curTestimonial, {
+            duration: config.animDuration / 1000
+        });
+
+        ++curTestimonial;
+        if (curTestimonial >= config.numTestimonials) {
+            curTestimonial = 0;
+        }
+
+        setTimeout(function() {
+            Effect.Appear(itemPrefix + curTestimonial, {
+                duration: config.animDuration / 1000
+            });
+            if ($(itemPrefix + '0').down('.read-more')) {
+                var elem = $(itemPrefix + curTestimonial);
+                elem.down('.read-more').observe('click', showMore);
+                elem.down('.read-less').observe('click', showLess);
+            }
+        }, config.animDuration);
+    }
 
     var WidgetList = Class.create();
     WidgetList.prototype = {
@@ -35,11 +91,21 @@ Testimonials.prototype = {
             if (!element) {
                 return;
             }
-            self = this;
-            ['num-testimonials','view-time','anim-duration'].each(
-                function (v) {
-                    self[v.camelize()] = element.readAttribute('data-'+v);
-                });
+            contentHeight = $$(widgetContentSelector)[0].getStyle('height');
+            config = element.readAttribute('data-widget-config');
+            config = JSON.parse(config.split('\'').join('"'));
+            element.observe('mouseenter', function() {
+                if (!showMoreActive) clearInterval(changeInterval);
+            });
+            element.observe('mouseleave', startChangeTimer);
+            var elem = $(itemPrefix + '0');
+            elem.down('.read-more').observe('click', showMore);
+            elem.down('.read-less').observe('click', showLess);
+            startChangeTimer();
+        },
+
+        next: function() {
+            nextTestimonial();
         }
     }
 
@@ -51,14 +117,19 @@ Testimonials.prototype = {
 
     var TestimonialForm = Class.create(VarienForm, {
 
+        initialize: function($super, formId, firstFieldFocus){
+            $super(formId, firstFieldFocus);
+            if (this.form) {
+                this.initRatingStars();
+            }
+        },
+
         initRatingStars: function(){
             var ratingRadiosSelector = '.testimonialForm .ratings-table label',
                 ratingBox = $('testimonial-form-rating-box');
-            // check if testimonials form rating box exist
             if (!ratingBox) {
                 return;
             }
-            // hide radiobuttons
             $$(ratingRadiosSelector).each(function (el){
                el.setStyle({'display': 'none'});
             });
@@ -82,8 +153,5 @@ Testimonials.prototype = {
 
 document.observe('dom:loaded', function() {
     testimonialForm.initialize('testimonialForm', true);
-    if (testimonialForm.form) {
-        testimonialForm.initRatingStars();
-    }
     testimonialWL.initialize($('testimonialsList'));
 });

@@ -3,9 +3,13 @@ $testimonials = $this->getTestimonials();
 if (!count($testimonials)) {
     return;
 }
+$config = "{'numTestimonials': " . count($testimonials)
+    . ", 'viewTime': " . $this->getViewTime()
+    . ", 'animDuration': " . $this->getAnimDuration()
+    . "}";
 ?>
 
-<div id="testimonialsList" class="block block-testimonials <?php if (!$this->getShowBlockDesign()):?>empty-design<?php endif; ?>" data-num-testimonials="<?php echo count($testimonials);?>" data-view-time="<?php echo $this->getViewTime();?>" data-anim-duration="<?php echo $this->getAnimDuration(); ?>">
+<div id="testimonialsList" class="block block-testimonials <?php if (!$this->getShowBlockDesign()):?>empty-design<?php endif; ?>" data-widget-config="<?php echo $config;?>">
     <div class="block-title">
         <strong><span><?php echo $this->__('Testimonials') ?></span></strong>
     </div>
@@ -34,77 +38,3 @@ if (!count($testimonials)) {
         </div>
     </div>
 </div>
-<script type="text/javascript">
-//<![CDATA[
-    var curTestimonial = 0,
-        showMoreActive = false,
-        changeInterval,
-        contentHeight = $$('.block-testimonials .block-content .content .content-wrapper')[0].getStyle('height'),
-        numTestimonials = <?php echo count($testimonials); ?>,
-        viewTime = <?php echo $this->getViewTime(); ?>,
-        changeAnimDuration = <?php echo $this->getAnimDuration(); ?>;
-
-    startChangeTimer();
-
-    Event.observe('testimonialsList', 'mouseenter', function() {
-        if (!showMoreActive) clearInterval(changeInterval);
-    });
-
-    Event.observe('testimonialsList', 'mouseleave', startChangeTimer);
-
-    if ($('testimonial_0').down('.read-more')) {
-        Event.observe($('testimonial_0').down('.read-more'), 'click', showMore);
-        Event.observe($('testimonial_0').down('.read-less'), 'click', showLess);
-    }
-
-    function showMore(e) {
-        e.stop();
-        showMoreActive = true;
-        this.hide();
-        this.up().down('.read-less').show();
-        this.up().down('.content-wrapper').setStyle( { height: 'auto' } );
-    }
-
-    function showLess(e) {
-        e.stop();
-        showMoreActive = false;
-        this.hide();
-        this.up().down('.read-more').show();
-        this.up().down('.content-wrapper').setStyle( { height: contentHeight } );
-    }
-
-    function startChangeTimer() {
-        if (!showMoreActive) {
-            changeInterval = setInterval(nextTestimonial, viewTime);
-        }
-    }
-
-    function nextTestimonial() {
-        if (numTestimonials < 2) {
-            return;
-        }
-        if ($('testimonial_0').down('.read-more')) {
-            $('testimonial_' + curTestimonial).down('.read-more').stopObserving();
-            $('testimonial_' + curTestimonial).down('.read-less').stopObserving();
-        }
-        Effect.Fade('testimonial_' + curTestimonial, {
-            duration: changeAnimDuration / 1000
-        });
-
-        ++curTestimonial;
-        if (curTestimonial >= numTestimonials) curTestimonial = 0;
-
-        setTimeout(function() {
-            Effect.Appear('testimonial_' + curTestimonial, {
-                duration: changeAnimDuration / 1000
-            });
-            if ($('testimonial_0').down('.read-more')) {
-                Event.observe($('testimonial_' + curTestimonial).down('.read-more'),
-                    'click', showMore);
-                Event.observe($('testimonial_' + curTestimonial).down('.read-less'),
-                    'click', showLess);
-            }
-        }, changeAnimDuration);
-    }
-//]]>
-</script>
