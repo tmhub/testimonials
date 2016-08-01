@@ -1,28 +1,5 @@
-var Testimonials = Class.create();
-Testimonials.prototype = {
-    initialize: function(ajaxCallUrl, divToUpdate) {
-        this.url = ajaxCallUrl;
-        this.div = $$(divToUpdate)[0];
-        this.currentPage = 1;
-    },
-
-    makeAjaxCall: function(event) {
-        event.stop();
-        if ($$('.more-button a')[0].hasClassName('disabled')) return;
-        $$('.more-button a')[0].addClassName('disabled');
-        ++this.currentPage;
-        new Ajax.Request(this.url + 'page/' + this.currentPage, {
-            onSuccess: function(transport) {
-                var response = transport.responseText.evalJSON();
-                this.div.insert(response.outputHtml);
-                $$('.more-button a')[0].removeClassName('disabled');
-            }.bind(this)
-        });
-    }
-};
-
 (function (exports){
-
+    // testimonials widget list
     var widgetContentSelector = '.block-testimonials .content .content-wrapper',
         config = {},
         itemPrefix = 'testimonial_',
@@ -49,10 +26,7 @@ Testimonials.prototype = {
 
     function startChangeTimer() {
         if (!showMoreActive) {
-            changeInterval = setInterval(
-                nextTestimonial,
-                config.viewTime
-            );
+            changeInterval = setInterval(nextTestimonial, config.viewTime);
         }
     }
 
@@ -109,12 +83,7 @@ Testimonials.prototype = {
         }
     }
 
-    exports.testimonialWL = new WidgetList();
-
-})(this);
-
-(function (exports){
-
+    // testimonials - post new testimonail form
     var TestimonialForm = Class.create(VarienForm, {
 
         initialize: function($super, formId, firstFieldFocus){
@@ -147,11 +116,50 @@ Testimonials.prototype = {
 
     });
 
-    exports.testimonialForm = new TestimonialForm();
+    // testimonails page
+    var Testimonials = Class.create();
+    Testimonials.prototype = {
+        initialize: function(divToUpdate) {
+            if (!divToUpdate) {
+                return;
+            }
+            this.url = divToUpdate.readAttribute('data-ajax-url');
+            this.div = divToUpdate;
+            this.currentPage = 1;
+        },
+
+        makeAjaxCall: function(event) {
+            event.stop();
+            if ($$('.more-button a')[0].hasClassName('disabled')) return;
+            $$('.more-button a')[0].addClassName('disabled');
+            ++this.currentPage;
+            new Ajax.Request(this.url + 'page/' + this.currentPage, {
+                onSuccess: function(transport) {
+                    var response = transport.responseText.evalJSON();
+                    this.div.insert(response.outputHtml);
+                    $$('.more-button a')[0].removeClassName('disabled');
+                }.bind(this)
+            });
+        }
+    };
+
+    var testimonialObject = {};
+    testimonialObject.widgetList = new WidgetList();
+    testimonialObject.form = new TestimonialForm();
+    testimonialObject.list = new Testimonials();
+
+    exports.testimonial = testimonialObject;
 
 })(this);
 
 document.observe('dom:loaded', function() {
-    testimonialForm.initialize('testimonialForm', true);
-    testimonialWL.initialize($('testimonialsList'));
+    testimonial.form.initialize('testimonialForm', true);
+    testimonial.widgetList.initialize($('testimonialsList'));
+    var listContainer = $$('.tm-testimonials-index-index .testimonials');
+    if (!listContainer.length) { return; }
+    testimonial.list.initialize(listContainer[0]);
+    $('viewMore').observe(
+        'click',
+        testimonial.list.makeAjaxCall.bind(testimonial.list)
+    );
 });

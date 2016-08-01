@@ -3,7 +3,11 @@
     <default>
         <reference name="head">
             <action method="addItem"><type>skin_css</type><name>css/tm/testimonials.css</name></action>
-            <action method="addItem"><type>skin_js</type><name>js/tm/testimonials.js</name></action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/tm/testimonials.js</name>
+                <params>defer</params>
+            </action>
         </reference>
         <reference name="top.links">
             <action method="addLink" translate="label title" module="testimonials" ifconfig="testimonials/general/top_links">
