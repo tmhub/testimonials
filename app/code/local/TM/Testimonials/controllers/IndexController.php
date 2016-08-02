@@ -60,6 +60,16 @@ class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
             $this->_initLayoutMessages('customer/session');
             // check if data sent
             if ($data = $this->getRequest()->getPost()) {
+
+                if (!($data['name'] && $data['email'] && $data['message'])) {
+                    Mage::getSingleton('customer/session')->addError(
+                        Mage::helper('testimonials')->__('Please, fill all required fields.')
+                    );
+                    Mage::getSingleton('customer/session')->setTestimonialsFormData($data);
+                    $this->_redirectReferer();
+                    return;
+                }
+
                 $model = Mage::getModel('tm_testimonials/data');
 
                 $model->setStoreId(Mage::app()->getStore()->getStoreId());
