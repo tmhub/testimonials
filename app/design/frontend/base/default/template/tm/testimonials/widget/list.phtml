@@ -17,6 +17,7 @@ $config = "{'numTestimonials': " . count($testimonials)
         <div class="testimonial-container">
             <?php $itemId = 0; ?>
             <?php foreach ($testimonials as $testimonial): ?>
+                <?php Mage::helper('testimonials')->escapeTetimonial($testimonial); ?>
                 <div id="testimonial_<?php echo $itemId ?>" class="content"
                 <?php if ($itemId > 0): ?> style="display: none;"<?php endif ?>>
                     <div class="content-wrapper ratings-table">

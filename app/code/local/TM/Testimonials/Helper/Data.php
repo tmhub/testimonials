@@ -318,4 +318,18 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return Mage::getStoreConfig(self::XML_ADMIN_EMAIL_TEMPLATE, $store);
     }
+
+    /**
+     * Escape testimonial data before output
+     * @param  [type] $testimonial [description]
+     * @return [type]              [description]
+     */
+    public function escapeTetimonial($testimonial)
+    {
+        $dataKeys = array_keys($testimonial->getData());
+        foreach ($dataKeys as $key) {
+            $testimonial->setData($key, $this->escapeHtml($testimonial->getData($key)));
+        }
+        return $testimonial;
+    }
 }

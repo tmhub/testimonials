@@ -8,13 +8,7 @@
     ?>
     <?php if($_testimonials->getSize()): ?>
         <?php foreach ($_testimonials as $_testimonial): ?>
-            <?php
-                // escape data before output
-                $dataKeys = array_keys($_testimonial->getData());
-                foreach ($dataKeys as $key) {
-                    $_testimonial->setData($key, $this->escapeHtml($_testimonial->getData($key)));
-                }
-            ?>
+            <?php Mage::helper('testimonials')->escapeTetimonial($_testimonial); ?>
             <div class="testimonial">
                 <?php if ($image = $this->getImagePath($_testimonial)): ?>
                 <div class="testimonial-image" style="width: <?php echo ($_width + 10) ?>px">
