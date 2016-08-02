@@ -80,7 +80,9 @@
     <?php if ($_testimonials->getCurPage() * $_testimonials->getPageSize() >= $_testimonials->getSize()): ?>
         <script type="text/javascript">
         //<![CDATA[
-            if ($('viewMore')) $('viewMore').hide();
+            if ($('testimonials-view-more-button')) {
+                $('testimonials-view-more-button').hide();
+            }
         //]]>
         </script>
     <?php endif ?>

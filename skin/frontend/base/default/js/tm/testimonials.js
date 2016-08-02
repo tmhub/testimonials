@@ -130,14 +130,14 @@
 
         makeAjaxCall: function(event) {
             event.stop();
-            if ($$('.more-button a')[0].hasClassName('disabled')) return;
-            $$('.more-button a')[0].addClassName('disabled');
+            if ($$('.more-button button')[0].hasClassName('disabled')) return;
+            $$('.more-button button')[0].addClassName('disabled');
             ++this.currentPage;
             new Ajax.Request(this.url + 'page/' + this.currentPage, {
                 onSuccess: function(transport) {
                     var response = transport.responseText.evalJSON();
                     this.div.insert(response.outputHtml);
-                    $$('.more-button a')[0].removeClassName('disabled');
+                    $$('.more-button button')[0].removeClassName('disabled');
                 }.bind(this)
             });
         }
@@ -158,7 +158,7 @@ document.observe('dom:loaded', function() {
     var listContainer = $$('.testimonials-list .testimonials');
     if (!listContainer.length) { return; }
     testimonial.list.initialize(listContainer[0]);
-    $('viewMore').observe(
+    $('testimonials-view-more-button').observe(
         'click',
         testimonial.list.makeAjaxCall.bind(testimonial.list)
     );
