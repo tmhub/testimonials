@@ -3,13 +3,9 @@ $testimonials = $this->getTestimonials();
 if (!count($testimonials)) {
     return;
 }
-$config = "{'numTestimonials': " . count($testimonials)
-    . ", 'viewTime': " . $this->getViewTime()
-    . ", 'animDuration': " . $this->getAnimDuration()
-    . "}";
 ?>
 
-<div id="testimonialsList" class="block block-testimonials <?php if (!$this->getShowBlockDesign()):?>empty-design<?php endif; ?>" data-widget-config="<?php echo $config;?>">
+<div id="testimonialsList" class="block block-testimonials <?php if (!$this->getShowBlockDesign()):?>empty-design<?php endif; ?>" data-widget-config='<?php echo $this->getWidgetConfig();?>'>
     <div class="block-title">
         <strong><span><?php echo $this->__('Testimonials') ?></span></strong>
     </div>
