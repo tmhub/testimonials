@@ -66,8 +66,7 @@
                 return;
             }
             contentHeight = $$(widgetContentSelector)[0].getStyle('height');
-            config = element.readAttribute('data-widget-config');
-            config = JSON.parse(config.split('\'').join('"'));
+            config = JSON.parse(element.readAttribute('data-widget-config'));
             element.observe('mouseenter', function() {
                 if (!showMoreActive) clearInterval(changeInterval);
             });
