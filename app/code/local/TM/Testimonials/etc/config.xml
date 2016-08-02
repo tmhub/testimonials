@@ -146,6 +146,7 @@
             </list>
             <form>
                 <layout>two_columns_left</layout>
+                <enable_stars>1</enable_stars>
                 <enable_company>0</enable_company>
                 <enable_website>0</enable_website>
                 <enable_twitter>0</enable_twitter>

@@ -56,6 +56,12 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
      */
     const XML_FORM_LAYOUT           = 'testimonials/form/layout';
     /**
+     * Path to store config starts on form enabled
+     *
+     * @var string
+     */
+    const XML_STARS_ENABLED            = 'testimonials/form/enable_stars';
+    /**
      * Path to store config company field enabled
      *
      * @var string
@@ -156,6 +162,18 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return abs((int)Mage::getStoreConfig(self::XML_PATH_IMAGE_H, $store));
     }
+
+    /**
+     * Check if enabled stars on form for Rating field
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return boolean
+     */
+    public function isStarsOnFormEnabled($store = null)
+    {
+        return Mage::getStoreConfigFlag(self::XML_STARS_ENABLED, $store);
+    }
+
     /**
      * Checks whether company field enabled
      *

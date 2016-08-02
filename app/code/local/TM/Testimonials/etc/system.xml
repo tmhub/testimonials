@@ -141,6 +141,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </layout>
+                        <enable_stars>
+                            <label>Stars for "Rating" field</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_stars>
                         <enable_company translate="label">
                             <label>Enable company field</label>
                             <frontend_type>select</frontend_type>
