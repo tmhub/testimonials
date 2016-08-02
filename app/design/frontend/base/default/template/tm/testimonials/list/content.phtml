@@ -71,6 +71,11 @@
     <?php else: ?>
         <p><?php echo $this->__('No testimonials found.'); ?></p>
     <?php endif ?>
+    <?php
+        if (!$this->getIsAjax()):
+            echo $this->getChildHtml('testimonials.list.bottom');
+        endif
+    ?>
     <?php if ($_testimonials->getCurPage() * $_testimonials->getPageSize() >= $_testimonials->getSize()): ?>
         <script type="text/javascript">
         //<![CDATA[
@@ -78,8 +83,3 @@
         //]]>
         </script>
     <?php endif ?>
-    <?php
-        if (!$this->getIsAjax()):
-            echo $this->getChildHtml('testimonials.list.bottom');
-        endif
-    ?>
