@@ -155,7 +155,7 @@
 document.observe('dom:loaded', function() {
     testimonial.form.initialize('testimonialForm', true);
     testimonial.widgetList.initialize($('testimonialsList'));
-    var listContainer = $$('.tm-testimonials-index-index .testimonials');
+    var listContainer = $$('.testimonials-list .testimonials');
     if (!listContainer.length) { return; }
     testimonial.list.initialize(listContainer[0]);
     $('viewMore').observe(

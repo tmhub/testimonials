@@ -42,20 +42,20 @@ class TM_Testimonials_Block_Widget_ListFull extends TM_Testimonials_Block_List_C
         return $template;
     }
 
-    protected function _afterToHtml($html)
-    {
+    protected function _beforeToHtml() {
         $titleBlock = $this->getLayout()
             ->createBlock('testimonials/list_title')
             ->setTemplate('tm/testimonials/list/title.phtml')
-            ->setShowTitle($this->getShowTitle())
-            ->toHtml();
+            ->setShowTitle($this->getShowTitle());
 
         $bottomBlock = $this->getLayout()
             ->createBlock('testimonials/list_bottom')
-            ->setTemplate('tm/testimonials/list/bottom.phtml')
-            ->toHtml();
+            ->setTemplate('tm/testimonials/list/bottom.phtml');
 
-        return $titleBlock . $html . $bottomBlock;
+        $this->setChild('testimonials.list.title', $titleBlock);
+        $this->setChild('testimonials.list.bottom', $bottomBlock);
+
+        return parent::_beforeToHtml();
     }
 
     public function getShowTitle()
