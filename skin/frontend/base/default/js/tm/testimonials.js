@@ -1,4 +1,4 @@
-(function (exports){
+;(function (exports){
     // testimonials widget list
     var widgetContentSelector = '.block-testimonials .content .content-wrapper',
         config = {},
