@@ -67,6 +67,13 @@
             }
             contentHeight = $$(widgetContentSelector)[0].getStyle('height');
             config = JSON.parse(element.readAttribute('data-widget-config'));
+            // set min height on testimonial container so it does not jump
+            var testimonialContainer = element.down('.testimonial-container');
+            if (testimonialContainer) {
+                testimonialContainer.setStyle({
+                    minHeight: testimonialContainer.getHeight()+'px'
+                });
+            }
             element.observe('mouseenter', function() {
                 if (!showMoreActive) clearInterval(changeInterval);
             });

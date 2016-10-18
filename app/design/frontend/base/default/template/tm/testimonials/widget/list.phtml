@@ -16,11 +16,13 @@ if (!count($testimonials)) {
                 <?php Mage::helper('testimonials')->escapeTetimonial($testimonial); ?>
                 <div id="testimonial_<?php echo $itemId ?>" class="content"
                 <?php if ($itemId > 0): ?> style="display: none;"<?php endif ?>>
-                    <div class="content-wrapper ratings-table">
-                        <?php if ($testimonial->getRating()): ?>
-                            <div class="rating-title"><?php echo $this->__('Rating: ') ?></div>
-                            <div class="rating-box"><div class="rating" style="width: <?php echo $testimonial->getRating() / 5 * 100 ?>%;"></div></div>
-                        <?php endif ?>
+                    <?php if ($testimonial->getRating()): ?>
+                        <div class="rating-wrapper ratings-table">
+                        <div class="rating-title"><?php echo $this->__('Rating') ?></div>
+                        <div class="rating-box"><div class="rating" style="width: <?php echo $testimonial->getRating() / 5 * 100 ?>%;"></div></div>
+                        </div>
+                    <?php endif ?>
+                    <div class="content-wrapper">
                         <div class="message"><?php echo $testimonial->getMessage(); ?></div>
                     </div>
                     <div class="name"><?php echo $testimonial->getName(); ?></div>
