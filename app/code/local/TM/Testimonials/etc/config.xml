@@ -190,5 +190,15 @@
                 </tm_testimonials>
             </updates>
         </layout>
+        <events>
+            <controller_action_layout_render_before_adminhtml_catalog_product_review_edit>
+                <observers>
+                    <testimonials>
+                        <class>tm_testimonials/observer</class>
+                        <method>addReviewExportButton</method>
+                    </testimonials>
+                </observers>
+            </controller_action_layout_render_before_adminhtml_catalog_product_review_edit>
+        </events>
     </adminhtml>
 </config>

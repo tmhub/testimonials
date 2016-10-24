@@ -95,4 +95,49 @@ class TM_Testimonials_Model_Observer
 
         return $this;
     }
+
+    /**
+     * Add export button on product review edit form
+     *
+     * @param Varien_Event_Observer $observer
+     * @return TM_Testimonials_Model_Observer
+     */
+    public function addReviewExportButton(Varien_Event_Observer $observer)
+    {
+        if (!Mage::helper('testimonials')->isEnabled()) {
+            return $this;
+        }
+
+        $reviewId = Mage::app()->getRequest()->getParam('id');
+        $review = Mage::getModel('review/review')->load($reviewId);
+        if (!$review->getCustomerId()) {
+            return $this;
+        }
+
+        $layout = Mage::app()->getLayout();
+        $contentBlock = $layout->getBlock('content');
+        $contentBlockChildren = $contentBlock->getSortedChildren();
+        $reviewEditBlock = $contentBlock->getChild($contentBlockChildren[0]);
+
+        $reviewEditBlock->addButton('copy', array(
+            'label'     => Mage::helper('testimonials')->__('Copy to Testimonials'),
+            'onclick'   => 'setLocation(\'' . $this->getCopyButtonUrl() . '\')',
+            'class'     => 'save'
+        ), 1);
+
+        return $this;
+    }
+
+    /**
+     * Retrieve the URL for button click
+     *
+     * @return string
+     */
+    private function getCopyButtonUrl()
+    {
+        return Mage::helper("adminhtml")->getUrl(
+            '*/testimonials_index/saveReview',
+            array('_current'   => true)
+        );
+    }
 }

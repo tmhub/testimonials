@@ -231,6 +231,50 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
     }
 
     /**
+     * Save product review as testimonial
+     */
+    public function saveReviewAction()
+    {
+        $review = Mage::getModel('review/review');
+        if ($id = $this->getRequest()->getParam('id')) {
+            $review->load($id);
+        }
+
+        $model = Mage::getModel('tm_testimonials/data');
+        try {
+            $model->setName($review->getNickname());
+            $model->setMessage($review->getDetail());
+            $model->setStoreId($review->getStoreId());
+            $model->setDate($review->getCreatedAt());
+
+            $customerEmail = Mage::getModel('customer/customer')
+                ->load($review->getCustomerId())
+                ->getEmail();
+            $model->setEmail($customerEmail);
+
+            $ratingSummary = Mage::getModel('rating/rating')
+                ->getReviewSummary($review->getId());
+            $rating = ceil($ratingSummary->getSum() / $ratingSummary->getCount());
+            $rating = round(5 * ($rating / 100));
+            $model->setRating($rating);
+
+            $model->save();
+
+            // clear testimonials list block cache after new item was added
+            Mage::app()->cleanCache(array('tm_testimonials_list'));
+
+            Mage::getSingleton('adminhtml/session')->addSuccess(
+                Mage::helper('testimonials')->__('Testimonial has been saved.')
+            );
+            $this->_redirect('*/*/edit', array('testimonial_id' => $model->getId(), '_current' => true));
+            return;
+        } catch (Exception $e) {
+            $this->_getSession()->addError($e->getMessage());
+        }
+        $this->_redirect('*/*/edit');
+    }
+
+    /**
      * Check the permission to run it
      *
      * @return boolean
