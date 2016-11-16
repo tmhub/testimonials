@@ -18,7 +18,8 @@ class TM_Testimonials_Block_Widget_Form extends TM_Testimonials_Block_Form_Form
         if ($head) {
             $head->addJs('mage/captcha.js');
         }
-        $this->append(
+        $this->setChild(
+            'testimonials.captcha',
             $this->getLayout()->createBlock('captcha/captcha', 'captcha')
                 ->setFormId('testimonials_form')
                 ->setImgWidth(230)
