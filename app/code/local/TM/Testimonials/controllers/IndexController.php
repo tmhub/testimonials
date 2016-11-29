@@ -15,8 +15,8 @@ class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
         }
     }
 
-	public function indexAction()
-	{
+    public function indexAction()
+    {
         $layout = $this->loadLayout()->getLayout();
         $isAjax = Mage::app()->getRequest()->isAjax();
         if ($isAjax) {
@@ -38,7 +38,7 @@ class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
                  ->applyTemplate(Mage::helper('testimonials')->getListLayout());
             $this->renderLayout();
         }
-	}
+    }
 
     public function newAction()
     {
