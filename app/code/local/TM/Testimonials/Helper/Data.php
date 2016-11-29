@@ -14,6 +14,12 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
      */
     const XML_PATH_APPROVE            = 'testimonials/general/approve';
     /**
+     * Path to store config allow guests to submit testimonials
+     *
+     * @var string
+     */
+    const XML_PATH_ALLOW_GUEST_SUBMIT   = 'testimonials/general/allow_guest_submit';
+    /**
      * Path to store config for testimonials list layout
      *
      * @var string
@@ -335,6 +341,16 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     public function getAdminEmailTemplate($store = null)
     {
         return Mage::getStoreConfig(self::XML_ADMIN_EMAIL_TEMPLATE, $store);
+    }
+    /**
+     * Checks whether guest is allowed to submit testimonials
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return boolean
+     */
+    public function allowGuestSubmit($store = null)
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_ALLOW_GUEST_SUBMIT, $store);
     }
 
     /**
