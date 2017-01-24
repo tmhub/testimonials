@@ -275,6 +275,64 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
     }
 
     /**
+     * Save product reviews as testimonials
+     */
+    public function massSaveReviewAction()
+    {
+        $reviewsIds = $this->getRequest()->getParam('reviews');
+        $session    = Mage::getSingleton('adminhtml/session');
+
+        if(!is_array($reviewsIds)) {
+             $session->addError(Mage::helper('adminhtml')->__('Please select review(s).'));
+        } else {
+            $exportedCount = 0;
+            try {
+                foreach ($reviewsIds as $reviewId) {
+                    $review = Mage::getModel('review/review')->load($reviewId);
+                    if (!$review->getCustomerId()) {
+                        continue;
+                    } else {
+                        $model = Mage::getModel('tm_testimonials/data');
+                        $model->setName($review->getNickname());
+                        $model->setMessage($review->getDetail());
+                        $model->setStoreId($review->getStoreId());
+                        $model->setDate($review->getCreatedAt());
+
+                        $customerEmail = Mage::getModel('customer/customer')
+                            ->load($review->getCustomerId())
+                            ->getEmail();
+                        $model->setEmail($customerEmail);
+
+                        $ratingSummary = Mage::getModel('rating/rating')
+                            ->getReviewSummary($review->getId());
+                        $rating = ceil($ratingSummary->getSum() / $ratingSummary->getCount());
+                        $rating = round(5 * ($rating / 100));
+                        $model->setRating($rating);
+
+                        $model->save();
+                        $exportedCount++;
+                    }
+                }
+
+                // clear testimonials list block cache after new item(s) was added
+                Mage::app()->cleanCache(array('tm_testimonials_list'));
+
+                $session->addSuccess(
+                    Mage::helper('testimonials')->__('Total of %d testimonial(s) have been created.', $exportedCount)
+                );
+            } catch (Mage_Core_Model_Exception $e) {
+                $session->addError($e->getMessage());
+            } catch (Mage_Core_Exception $e) {
+                $session->addError($e->getMessage());
+            } catch (Exception $e) {
+                $session->addException($e, Mage::helper('testimonials')->__('An error occurred while exporting review(s).'));
+            }
+        }
+
+        $this->_redirect('*/*/');
+    }
+
+    /**
      * Check the permission to run it
      *
      * @return boolean

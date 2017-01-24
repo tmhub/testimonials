@@ -200,6 +200,14 @@
                     </testimonials>
                 </observers>
             </controller_action_layout_render_before_adminhtml_catalog_product_review_edit>
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <testimonials>
+                        <class>tm_testimonials/observer</class>
+                        <method>addReviewExportMassAction</method>
+                    </testimonials>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
         </events>
     </adminhtml>
 </config>

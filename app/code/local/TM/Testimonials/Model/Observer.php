@@ -129,6 +129,29 @@ class TM_Testimonials_Model_Observer
     }
 
     /**
+     * Add mass export action in product reviews grid
+     *
+     * @param Varien_Event_Observer $observer
+     * @return TM_Testimonials_Model_Observer
+     */
+    public function addReviewExportMassAction(Varien_Event_Observer $observer)
+    {
+        if (!Mage::helper('testimonials')->isEnabled()) {
+            return $this;
+        }
+
+        $block = $observer->getEvent()->getBlock();
+        if (get_class($block) =='Mage_Adminhtml_Block_Widget_Grid_Massaction'
+            && $block->getRequest()->getControllerName() == 'catalog_product_review')
+        {
+            $block->addItem('testimonials', array(
+                'label' => Mage::helper('testimonials')->__('Copy to Testimonials'),
+                'url' => $this->getMassCopyActionUrl()
+            ));
+        }
+    }
+
+    /**
      * Retrieve the URL for button click
      *
      * @return string
@@ -137,7 +160,20 @@ class TM_Testimonials_Model_Observer
     {
         return Mage::helper("adminhtml")->getUrl(
             '*/testimonials_index/saveReview',
-            array('_current'   => true)
+            array('_current' => true)
+        );
+    }
+
+    /**
+     * Retrieve the URL for mass action
+     *
+     * @return string
+     */
+    private function getMassCopyActionUrl()
+    {
+        return Mage::helper("adminhtml")->getUrl(
+            '*/testimonials_index/massSaveReview',
+            array('_current' => true)
         );
     }
 }
