@@ -1,0 +1,10 @@
+app/code/local/TM/Testimonials                                          app/code/local/TM/Testimonials
+app/design/adminhtml/default/default/layout/tm/testimonials.xml         app/design/adminhtml/default/default/layout/tm/testimonials.xml
+app/design/frontend/base/default/layout/tm/testimonials.xml             app/design/frontend/base/default/layout/tm/testimonials.xml
+app/design/frontend/base/default/template/tm/testimonials               app/design/frontend/base/default/template/tm/testimonials
+app/etc/modules/TM_Testimonials.xml                                     app/etc/modules/TM_Testimonials.xml
+app/locale/en_US/TM_Testimonials.csv                                    app/locale/en_US/TM_Testimonials.csv
+app/locale/en_US/template/email/testimonials_admin_notification.html    app/locale/en_US/template/email/testimonials_admin_notification.html
+media/testimonials                                                      media/testimonials
+skin/frontend/base/default/css/tm/testimonials.css                      skin/frontend/base/default/css/tm/testimonials.css
+skin/frontend/base/default/js/tm/testimonials.js                        skin/frontend/base/default/js/tm/testimonials.js
