@@ -117,13 +117,17 @@ class TM_Testimonials_Model_Observer
         $layout = Mage::app()->getLayout();
         $contentBlock = $layout->getBlock('content');
         $contentBlockChildren = $contentBlock->getSortedChildren();
-        $reviewEditBlock = $contentBlock->getChild($contentBlockChildren[0]);
-
-        $reviewEditBlock->addButton('copy', array(
-            'label'     => Mage::helper('testimonials')->__('Copy to Testimonials'),
-            'onclick'   => 'setLocation(\'' . $this->getCopyButtonUrl() . '\')',
-            'class'     => 'save'
-        ), 1);
+        foreach ($contentBlock->getChild() as $child) {
+            if ($child->getType() != 'adminhtml/review_edit') {
+                continue;
+            }
+            $child->addButton('copy', array(
+                'label'     => Mage::helper('testimonials')->__('Copy to Testimonials'),
+                'onclick'   => 'setLocation(\'' . $this->getCopyButtonUrl() . '\')',
+                'class'     => 'save'
+            ), 1);
+            break;
+        }
 
         return $this;
     }
