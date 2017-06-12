@@ -101,6 +101,13 @@ class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
                     $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
                     $uploader->setAllowRenameFiles(true);
                     $uploader->setFilesDispersion(true);
+                    if (@class_exists('Mage_Core_Model_File_Validator_Image')) {
+                        $uploader->addValidateCallback(
+                            Mage_Core_Model_File_Validator_Image::NAME,
+                            Mage::getModel('core/file_validator_image'),
+                            'validate'
+                        );
+                    }
                     $uploader->save($path, $_FILES['image']['name']);
                     $uploadedImg = $uploader->getUploadedFileName();
                     $model->setImage($uploadedImg);

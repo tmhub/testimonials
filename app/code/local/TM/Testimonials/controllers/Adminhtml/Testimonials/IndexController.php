@@ -92,6 +92,13 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
                     $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png', 'bmp'));
                     $uploader->setAllowRenameFiles(true);
                     $uploader->setFilesDispersion(true);
+                    if (@class_exists('Mage_Core_Model_File_Validator_Image')) {
+                        $uploader->addValidateCallback(
+                            Mage_Core_Model_File_Validator_Image::NAME,
+                            Mage::getModel('core/file_validator_image'),
+                            'validate'
+                        );
+                    }
                     $res = $uploader->save($mediaPath);
                     $data['image'] = $uploader->getUploadedFileName();
                 } catch (Exception $e) {
