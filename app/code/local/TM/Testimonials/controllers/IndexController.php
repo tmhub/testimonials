@@ -68,6 +68,18 @@ class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
     public function postAction()
     {
         $this->_initLayoutMessages('customer/session');
+
+        if (!Mage::helper('testimonials')->allowGuestSubmit() &&
+            !Mage::getSingleton('customer/session')->isLoggedIn())
+        {
+            Mage::getSingleton('customer/session')->addError(
+                Mage::helper('testimonials')->__('Please log in to submit testimonial.')
+            );
+            $this->getResponse()->setRedirect(Mage::getUrl('customer/account'));
+
+            return;
+        }
+
         // check if data sent
         if ($data = $this->getRequest()->getPost()) {
             if (!($data['name'] && $data['email'] && $data['message'])) {
