@@ -249,23 +249,7 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
 
         $model = Mage::getModel('tm_testimonials/data');
         try {
-            $model->setName($review->getNickname());
-            $model->setMessage($review->getDetail());
-            $model->setStoreId($review->getStoreId());
-            $model->setDate($review->getCreatedAt());
-
-            $customerEmail = Mage::getModel('customer/customer')
-                ->load($review->getCustomerId())
-                ->getEmail();
-            $model->setEmail($customerEmail);
-
-            $ratingSummary = Mage::getModel('rating/rating')
-                ->getReviewSummary($review->getId());
-            $rating = ceil($ratingSummary->getSum() / $ratingSummary->getCount());
-            $rating = round(5 * ($rating / 100));
-            $model->setRating($rating);
-
-            $model->save();
+            $this->saveReview($model, $review);
 
             // clear testimonials list block cache after new item was added
             Mage::app()->cleanCache(array('tm_testimonials_list'));
@@ -300,23 +284,7 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
                         continue;
                     } else {
                         $model = Mage::getModel('tm_testimonials/data');
-                        $model->setName($review->getNickname());
-                        $model->setMessage($review->getDetail());
-                        $model->setStoreId($review->getStoreId());
-                        $model->setDate($review->getCreatedAt());
-
-                        $customerEmail = Mage::getModel('customer/customer')
-                            ->load($review->getCustomerId())
-                            ->getEmail();
-                        $model->setEmail($customerEmail);
-
-                        $ratingSummary = Mage::getModel('rating/rating')
-                            ->getReviewSummary($review->getId());
-                        $rating = ceil($ratingSummary->getSum() / $ratingSummary->getCount());
-                        $rating = round(5 * ($rating / 100));
-                        $model->setRating($rating);
-
-                        $model->save();
+                        $this->saveReview($model, $review);
                         $exportedCount++;
                     }
                 }
@@ -337,6 +305,32 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
         }
 
         $this->_redirect('*/*/');
+    }
+
+    /**
+     * Save review as testimonial
+     * @param $model  tm_testimonials/data model
+     * @param $review review/review model
+     */
+    private function saveReview($model, $review)
+    {
+        $model->setName($review->getNickname());
+        $model->setMessage($review->getDetail());
+        $model->setStoreId($review->getStoreId());
+        $model->setDate($review->getCreatedAt());
+
+        $customerEmail = Mage::getModel('customer/customer')
+            ->load($review->getCustomerId())
+            ->getEmail();
+        $model->setEmail($customerEmail);
+
+        $ratingSummary = Mage::getModel('rating/rating')
+            ->getReviewSummary($review->getId());
+        $rating = ceil($ratingSummary->getSum() / $ratingSummary->getCount());
+        $rating = round(5 * ($rating / 100));
+        $model->setRating($rating);
+
+        $model->save();
     }
 
     /**
