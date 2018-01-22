@@ -42,6 +42,7 @@ class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
 
     public function newAction()
     {
+        $this->loadLayout();
         $this->_initLayoutMessages('customer/session');
         $this->_initLayoutMessages('catalog/session');
 
@@ -54,7 +55,6 @@ class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
             $this->getResponse()->setRedirect(Mage::getUrl('customer/account'));
         }
 
-        $this->loadLayout();
         $this->getLayout()->getBlock('head')->setTitle(
             Mage::helper('testimonials')->__('New Testimonial')
         );
