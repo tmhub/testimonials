@@ -115,6 +115,7 @@
                 var xPosInDiv = event.pointerX() - this.cumulativeOffset().left;
                 var starWidth = this.getWidth() / 5;
                 var n = Math.floor( xPosInDiv / starWidth ) + 1;
+                $('rating_hidden').value = n;
                 $('rating_' + n).checked = 'checked';
                 $('testimonial-form-rating').setStyle({'width' : (n*20) + '%'});
             });

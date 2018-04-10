@@ -82,7 +82,7 @@ class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
 
         // check if data sent
         if ($data = $this->getRequest()->getPost()) {
-            if (!($data['name'] && $data['email'] && $data['message'])) {
+            if (!($data['name'] && $data['email'] && $data['message'] && $data['rating'])) {
                 Mage::getSingleton('customer/session')->addError(
                     Mage::helper('testimonials')->__('Please, fill all required fields.')
                 );
