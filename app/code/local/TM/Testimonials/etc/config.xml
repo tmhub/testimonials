@@ -61,6 +61,16 @@
                 </testimonials_email_admin_email_template>
             </email>
         </template>
+        <events>
+            <tm_gdpr_personal_data_forms_load_before>
+                <observers>
+                    <tm_testimonials_register_form>
+                        <class>tm_testimonials/observer</class>
+                        <method>registerTestimonialForm</method>
+                    </tm_testimonials_register_form>
+                </observers>
+            </tm_gdpr_personal_data_forms_load_before>
+        </events>
     </global>
     <frontend>
         <routers>

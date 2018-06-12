@@ -180,4 +180,27 @@ class TM_Testimonials_Model_Observer
             array('_current' => true)
         );
     }
+
+    /**
+     * Register Testimonial Form
+     *
+     * @param Varien_Event_Observer $observer
+     * @return TM_Testimonials_Model_Observer
+     */
+    public function registerTestimonialForm(Varien_Event_Observer $observer)
+    {
+        $observer->getCollection()
+            ->addItem(
+                new TM_Gdpr_Model_PersonalDataForm(array(
+                    'id' => 'tm:submit_testimonial',
+                    'name' => 'TM: Submit Testimonial',
+                    'action' => 'tm_testimonials_index_post',
+                    'js_config' => array(
+                        'form' => 'form[action*="testimonials/index/post"]',
+                    )
+                ))
+            );
+
+        return $this;
+    }
 }
