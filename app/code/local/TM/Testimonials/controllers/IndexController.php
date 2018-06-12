@@ -106,29 +106,21 @@ class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
                 $model->setStatus(TM_Testimonials_Model_Data::STATUS_ENABLED);
 
             // upload image
-            if (isset($_FILES['image']['name']) && ($_FILES['image']['tmp_name'] != NULL)) {
-                $path = Mage::getBaseDir('media') . TM_Testimonials_Model_Data::IMAGE_PATH;
-                try {
-                    $uploader = new Varien_File_Uploader('image');
-                    $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
-                    $uploader->setAllowRenameFiles(true);
-                    $uploader->setFilesDispersion(true);
-                    if (@class_exists('Mage_Core_Model_File_Validator_Image')) {
-                        $uploader->addValidateCallback(
-                            Mage_Core_Model_File_Validator_Image::NAME,
-                            Mage::getModel('core/file_validator_image'),
-                            'validate'
-                        );
-                    }
-                    $uploader->save($path, $_FILES['image']['name']);
-                    $uploadedImg = $uploader->getUploadedFileName();
-                    $model->setImage($uploadedImg);
-                } catch (Exception $e) {
-                    Mage::getSingleton('customer/session')->addError($e->getMessage());
-                    Mage::getSingleton('customer/session')->setTestimonialsFormData($data);
-                    $this->_redirectReferer();
-                    return;
+            try {
+                if ($uploader = @Mage::getModel('tmcore/image_uploader')) {
+                    $mediaDir = TM_Testimonials_Model_Data::IMAGE_PATH;
+                    $uploader->setDirectory($mediaDir)
+                        ->setFilesDispersion(true)
+                        ->upload($model, 'image');
+                } else {
+                    throw new Exception(
+                        Mage::helper('tmcore')->__(
+                            "We can't upload image. Update TM Core module."
+                        )
+                    );
                 }
+            } catch (Exception $e) {
+                Mage::getSingleton('customer/session')->addWarning($e->getMessage());
             }
 
             // try to save form data

@@ -84,38 +84,21 @@ class TM_Testimonials_Adminhtml_Testimonials_IndexController extends Mage_Adminh
             $model->load($id);
         }
 
+        $model->addData($data);
+
         try {
-            $mediaPath = Mage::getBaseDir('media') . DS . TM_Testimonials_Model_Data::IMAGE_PATH;
-            if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-                try {
-                    $uploader = new Varien_File_Uploader('image');
-                    $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png', 'bmp'));
-                    $uploader->setAllowRenameFiles(true);
-                    $uploader->setFilesDispersion(true);
-                    if (@class_exists('Mage_Core_Model_File_Validator_Image')) {
-                        $uploader->addValidateCallback(
-                            Mage_Core_Model_File_Validator_Image::NAME,
-                            Mage::getModel('core/file_validator_image'),
-                            'validate'
-                        );
-                    }
-                    $res = $uploader->save($mediaPath);
-                    $data['image'] = $uploader->getUploadedFileName();
-                } catch (Exception $e) {
-                    $this->_getSession()->addError($e->getMessage());
-                }
+            if ($uploader = @Mage::getModel('tmcore/image_uploader')) {
+                $mediaDir = TM_Testimonials_Model_Data::IMAGE_PATH;
+                $uploader->setDirectory($mediaDir)
+                    ->setFilesDispersion(true)
+                    ->upload($model, 'image');
+            } else {
+                throw new Exception(
+                    Mage::helper('tmcore')->__(
+                        "We can't upload image. Update TM Core module."
+                    )
+                );
             }
-
-            if (isset($data['image']) && is_array($data['image'])) {
-                if (!empty($data['image']['delete'])) {
-                    @unlink($mediaPath . $data['image']['value']);
-                    $data['image'] = null;
-                } else {
-                    $data['image'] = $data['image']['value'];
-                }
-            }
-
-            $model->addData($data);
 
             $date = Mage::app()->getLocale()->date($data['date'], Zend_Date::DATE_SHORT, null, false);
             $model->setDate($date->toString('YYYY-MM-dd HH:mm:ss'));
