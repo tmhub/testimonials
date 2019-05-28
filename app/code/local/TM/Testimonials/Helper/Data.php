@@ -31,6 +31,12 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
      * @var string
      */
     const XML_PATH_ITEMS_PER_PAGE     = 'testimonials/list/items_per_page';
+
+    /**
+     * @var  string
+     */
+    const XML_LIST_PROFILE_PICTURE    = 'testimonials/list/profile_picture';
+
     /**
      * Path to store config testimonial image width
      *
@@ -67,6 +73,11 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
      * @var string
      */
     const XML_STARS_ENABLED            = 'testimonials/form/enable_stars';
+
+    /**
+     * @var string
+     */
+    const XML_PROFILE_PICTURE_ENABLED  = 'testimonials/form/enable_profile_pic';
     /**
      * Path to store config company field enabled
      *
@@ -365,5 +376,27 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
             $testimonial->setData($key, $this->escapeHtml($testimonial->getData($key)));
         }
         return $testimonial;
+    }
+
+    /**
+     * Is profile picture enabled for submit form
+     *
+     * @param  integer|string|Mage_Core_Model_Store  $store
+     * @return boolean
+     */
+    public function isProfilePictureEnabled($store = null)
+    {
+        return Mage::getStoreConfigFlag(self::XML_PROFILE_PICTURE_ENABLED, $store);
+    }
+
+    /**
+     * Is profile picture enabled for list
+     *
+     * @param  integer|string|Mage_Core_Model_Store  $store
+     * @return boolean
+     */
+    public function isListProfilePictureEnabled($store = null)
+    {
+        return Mage::getStoreConfigFlag(self::XML_LIST_PROFILE_PICTURE, $store);
     }
 }

@@ -79,10 +79,15 @@ class TM_Testimonials_Block_List_Content extends Mage_Core_Block_Template
 
     public function getImagePath($testimonial)
     {
+        if (!$this->helper('testimonials')->isListProfilePictureEnabled()) {
+            return '';
+        }
+
         $image = $testimonial->getImage();
         if (!$image && $this->_placeholderImage) {
             $image = $this->_placeholderImage;
         }
+
         return $image;
     }
     /**

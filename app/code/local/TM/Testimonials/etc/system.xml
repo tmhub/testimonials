@@ -95,6 +95,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </items_per_page>
+                        <profile_picture>
+                            <label>Show profile picture</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </profile_picture>
                         <image_width translate="label">
                             <label>Image width</label>
                             <frontend_type>text</frontend_type>
@@ -102,6 +111,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends><profile_picture>1</profile_picture></depends>
                         </image_width>
                         <image_height translate="label">
                             <label>Image height</label>
@@ -110,6 +120,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends><profile_picture>1</profile_picture></depends>
                         </image_height>
                         <placeholder_image translate="label comment">
                             <label>Image placeholder</label>
@@ -122,6 +133,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends><profile_picture>1</profile_picture></depends>
                         </placeholder_image>
                         <show_email translate="label">
                             <label>Show user email in testimonials list</label>
@@ -150,6 +162,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </layout>
+                        <enable_profile_pic>
+                            <label>Enable profile picture field</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_profile_pic>
                         <enable_stars>
                             <label>Stars for "Rating" field</label>
                             <frontend_type>select</frontend_type>

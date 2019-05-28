@@ -66,14 +66,18 @@
     font-style: italic;
     position: relative;
     padding: 15px;
-    margin: 0 0 0 30px;
+    margin: 0;
     border: 1px solid #CFCFCF;
     border-bottom: 2px solid #CFCFCF;
     color: #333;
     background: #fff;
 }
 
-.testimonials-list .testimonial .message:before {
+.testimonials-list .testimonial-image + .container .message {
+    margin-left: 30px;
+}
+
+.testimonials-list .testimonial-image + .container .message:before {
     content: "";
     position: absolute;
     top: 15px;
@@ -86,7 +90,7 @@
     width: 0;
 }
 
-.testimonials-list .testimonial .message:after {
+.testimonials-list .testimonial-image + .container .message:after {
     content: "";
     position: absolute;
     top: 16px;
@@ -230,11 +234,11 @@
         margin-top: 20px;
     }
 
-    .testimonials-list .testimonial .message {
+    .testimonials-list .testimonial-image + .container .message {
         margin: 0;
     }
 
-    .testimonials-list .testimonial .message:before {
+    .testimonials-list .testimonial-image + .container .message:before {
         content: "";
         position: absolute;
         top: -23px;
@@ -248,7 +252,7 @@
         height: 0;
     }
 
-    .testimonials-list .testimonial .message:after {
+    .testimonials-list .testimonial-image + .container .message:after {
         content: "";
         position: absolute;
         top: -21px;
