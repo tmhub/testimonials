@@ -216,6 +216,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </enable_facebook>
+                        <testimonial_min_length translate="label comment">
+                            <label>Testimonial's min length</label>
+                            <comment>Minimal number of characters for testimonial at storefront. `0` - testimonial has no length limitations.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>54</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </testimonial_min_length>
                         <sent_message translate="label">
                             <label>Message shown after testimonial sent</label>
                             <frontend_type>textarea</frontend_type>

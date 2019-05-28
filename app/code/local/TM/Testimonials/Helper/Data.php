@@ -102,6 +102,11 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
      * @var string
      */
     const XML_FACEBOOK_ENABLED            = 'testimonials/form/enable_facebook';
+
+    /**
+     * @var string
+     */
+    const XML_TESTTIMONIAL_MIN_LENGTH     = 'testimonials/form/testimonial_min_length';
     /**
      * Path to store config sent message
      *
@@ -398,5 +403,16 @@ class TM_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract
     public function isListProfilePictureEnabled($store = null)
     {
         return Mage::getStoreConfigFlag(self::XML_LIST_PROFILE_PICTURE, $store);
+    }
+
+    /**
+     * Get minimal length for testimonial message
+     *
+     * @param  int|string|Mage_Core_Model_Store  $store
+     * @return int
+     */
+    public function getTestimonialMinLength($store = null)
+    {
+        return (int) Mage::getStoreConfig(self::XML_TESTTIMONIAL_MIN_LENGTH, $store);
     }
 }

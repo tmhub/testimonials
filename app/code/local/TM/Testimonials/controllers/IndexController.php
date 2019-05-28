@@ -83,12 +83,16 @@ class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
         // check if data sent
         if ($data = $this->getRequest()->getPost()) {
             if (!($data['name'] && $data['email'] && $data['message'] && $data['rating'])) {
-                Mage::getSingleton('customer/session')->addError(
+                return $this->sendError(
                     Mage::helper('testimonials')->__('Please, fill all required fields.')
                 );
-                Mage::getSingleton('customer/session')->setTestimonialsFormData($data);
-                $this->_redirectReferer();
-                return;
+            }
+
+            $messageMinLength = Mage::helper('testimonials')->getTestimonialMinLength();
+            if ($messageMinLength > strlen($data['message'])) {
+                return $this->sendError(
+                    Mage::helper('testimonials')->__('Please, add few more words. Testimonial should be at least %s characters.', $messageMinLength)
+                );
             }
 
             $model = Mage::getModel('tm_testimonials/data');
@@ -146,12 +150,23 @@ class TM_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
                 // clear testimonials list block cache after new item was added
                 Mage::app()->cleanCache(array('tm_testimonials_list'));
             } catch (Exception $e) {
-                Mage::getSingleton('customer/session')->addError($e->getMessage());
-                Mage::getSingleton('customer/session')->setTestimonialsFormData($data);
-                $this->_redirectReferer();
-                return;
+                return $this->sendError($e->getMessage());
             }
         }
+        $this->_redirectReferer();
+    }
+
+    /**
+     * Add error message to session, set data to restore form and send redirect
+     *
+     * @param  string $message
+     */
+    private function sendError($message)
+    {
+        Mage::getSingleton('customer/session')->addError($message);
+        Mage::getSingleton('customer/session')->setTestimonialsFormData(
+            $this->getRequest()->getPost()
+        );
         $this->_redirectReferer();
     }
 }

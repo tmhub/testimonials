@@ -1,3 +1,6 @@
+<?php
+    $minLength = $this->helper('testimonials')->getTestimonialMinLength();
+?>
 <form action="<?php echo $this->getUrl('testimonials/index/post'); ?>"
       id="testimonialForm"
       class="testimonialForm"
@@ -83,7 +86,7 @@
                 <div class="input-box">
                     <textarea name="message" id="message"
                         title="<?php echo $this->__('Message') ?>"
-                        class="required-entry input-text" cols="5" rows="3"><?php echo $this->getUserMessage(); ?></textarea>
+                        class="required-entry input-text<?php echo $minLength ? ' validate-length minimum-length-' . $minLength : ''; ?>" cols="5" rows="3"><?php echo $this->getUserMessage(); ?></textarea>
                 </div>
             </li>
             <?php echo $this->getChildHtml('testimonials.captcha'); ?>
