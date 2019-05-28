@@ -164,7 +164,7 @@
                 <enable_website>0</enable_website>
                 <enable_twitter>0</enable_twitter>
                 <enable_facebook>0</enable_facebook>
-                <testimonial_min_length>57</testimonial_min_length>
+                <testimonial_min_length>0</testimonial_min_length>
                 <sent_message>Thank you for your testimonial</sent_message>
             </form>
             <email_admin>
