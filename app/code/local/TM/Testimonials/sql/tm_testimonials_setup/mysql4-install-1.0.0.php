@@ -57,6 +57,7 @@ if ($installer->getConnection()->isTableExists($installer->getTable('tm_testimon
         ->newTable($installer->getTable('tm_testimonials/store'))
         ->addColumn('testimonial_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
             'nullable' => false,
+            'unsigned' => true,
             'primary'  => true
             ), 'Testimonial ID')
         ->addColumn('store_id', Varien_Db_Ddl_Table::TYPE_SMALLINT, null, array(
